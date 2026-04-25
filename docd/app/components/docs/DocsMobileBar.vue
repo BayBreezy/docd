@@ -5,11 +5,12 @@
   >
     <DocsLogo />
     <div class="flex items-center gap-1">
+      <DocsThemeCustomizer v-if="!hideThemeCustomizer" />
       <DocsSearchButton v-if="!hideSearch" />
       <UiButton
         variant="ghost"
         size="icon-sm"
-        class="size-7 text-muted-foreground"
+        class="size-7"
         aria-label="Open navigation"
         @click="navOpen = true"
       >
@@ -21,6 +22,6 @@
 </template>
 
 <script lang="ts" setup>
-  const { isDashed, hideSearch } = useDocd();
+  const { isDashed, hideSearch, hideThemeCustomizer } = useDocd();
   const navOpen = ref(false);
 </script>
