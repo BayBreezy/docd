@@ -12,7 +12,18 @@ export default defineNuxtConfig({
       description: "Documentation for the Docd Nuxt layer.",
     },
   },
-  vite: { build: { sourcemap: false } },
+  vite: {
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+          if (warning.code === "SOURCEMAP_BROKEN" || warning.code === "CIRCULAR_DEPENDENCY") {
+            return;
+          }
+          warn(warning);
+        },
+      },
+    },
+  },
 
   modules: ["nuxt-studio"],
 
