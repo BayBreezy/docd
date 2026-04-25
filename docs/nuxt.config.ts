@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  extends: ["../docd"],
+  extends: ["@baybreezy/docd"],
   site: {
     name: "Docd",
   },
@@ -10,18 +10,6 @@ export default defineNuxtConfig({
     full: {
       title: process.env.NUXT_SITE_NAME || "Docd",
       description: "Documentation for the Docd Nuxt layer.",
-    },
-  },
-  vite: {
-    build: {
-      rollupOptions: {
-        onwarn(warning, warn) {
-          if (warning.code === "SOURCEMAP_BROKEN" || warning.code === "CIRCULAR_DEPENDENCY") {
-            return;
-          }
-          warn(warning);
-        },
-      },
     },
   },
 
