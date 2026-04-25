@@ -1,5 +1,13 @@
 # docd
 
+## 0.0.3
+
+### Patch Changes
+
+- [`6324480`](https://github.com/BayBreezy/docd/commit/63244807dd64a552c74572c64c97e002824faaa8) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add `docd:css` Vite plugin that automatically scans the consuming app's `content/` directory for Tailwind classes.
+
+  Previously, Tailwind only scanned the layer's own source files, so utility classes used exclusively in markdown content were stripped from the production build. The new module injects an `@source` directive into the layer's Tailwind entry before `@tailwindcss/vite` compiles it — no extra configuration required.
+
 ## 0.0.2
 
 ### Patch Changes
