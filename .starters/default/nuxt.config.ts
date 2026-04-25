@@ -1,11 +1,11 @@
 export default defineNuxtConfig({
-  extends: ["docd"],
+  extends: ["@baybreezy/docd"],
   llms: {
-    domain: "http://localhost:3000",
-    title: "My Docd Site",
+    domain: process.env.NUXT_SITE_URL || "http://localhost:3000",
+    title: process.env.NUXT_SITE_NAME || "My Docs",
     description: "A starter documentation site powered by Docd.",
     full: {
-      title: "My Docd Site",
+      title: process.env.NUXT_SITE_NAME || "My Docs",
       description: "A starter documentation site powered by Docd.",
     },
   },

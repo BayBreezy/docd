@@ -3,7 +3,7 @@ export default defineAppConfig({
     ui: {
       borderType: "dashed",
       header: {
-        title: "My Docd Site",
+        title: "My Docs",
       },
       transition: {
         name: "fade",

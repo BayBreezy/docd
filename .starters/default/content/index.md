@@ -1,14 +1,26 @@
 ---
-title: Welcome
-description: Start building your documentation site with Docd.
+seo:
+  title: Write beautiful docs with Markdown
+  description: Ship fast, flexible, and SEO-optimized documentation with beautiful design out of the box. Docd brings together the best of the Nuxt ecosystem.
 ---
 
-# Welcome
-
-Docd gives you a structured Nuxt docs site with sensible defaults out of the box.
-
-## Next steps
-
-- Edit this page in `content/index.md`
-- Add new pages in the `content/` directory
-- Customize the site in `app/app.config.ts`
+::landing-hero
+---
+badge:
+  label: Fresh
+  text: Explore the new Docd experience
+  href: /getting-started
+iframe:
+  src: /getting-started
+  class: border rounded-lg h-[580px] md:h-[700px]
+  iframeClass: "rounded-lg "
+primaryCta:
+  label: Get started
+  href: /getting-started
+browserFrameUrl: https://example.com
+description: Ship fast, flexible, and SEO-optimized documentation with beautiful
+  design out of the box. Docd brings together the best of the Nuxt ecosystem.
+headline: Write beautiful docs with Markdown
+siteName: Docd
+---
+::
