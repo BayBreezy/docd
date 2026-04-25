@@ -5,19 +5,17 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "bun run dev:prepare && nuxi dev --host",
-    "dev:prepare": "node ../scripts/run-nuxt-prepare.mjs",
+    "dev:prepare": "nuxi prepare",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@baybreezy/docd": "^0.0.2",
+    "@baybreezy/docd": "workspace:*",
     "@takumi-rs/core": "^1.0.16",
-    "nuxt-studio": "1.6.1",
-    "slugify": "^1.6.9"
+    "nuxt-studio": "1.6.1"
   },
   "devDependencies": {
     "nuxt": "^4.4.2",
-    "nuxt-studio": "1.6.1",
     "typescript": "^6.0.3",
     "vue": "latest",
     "vue-router": "latest"
