@@ -95,7 +95,7 @@
       "dependencies": {
         "@takumi-rs/core": "^1.0.16",
         "docd": "*",
-        "nuxt-studio": "1.6.0",
+        "nuxt-studio": "1.6.1",
         "slugify": "^1.6.9",
       },
       "devDependencies": {
@@ -2788,8 +2788,6 @@
     "@babel/helper-create-class-features-plugin/semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
 
     "@changesets/cli/package-manager-detector": ["package-manager-detector@0.2.11", "", { "dependencies": { "quansync": "^0.2.7" } }, "sha512-BEnLolu+yuz22S56CU1SUKq3XC3PkwD5wv4ikR4MfGvnRVcmzXR9DwSlW2fEamyTPyXHomBJRzgapeuBvRNzJQ=="],
-
-    "@docd/docs/nuxt-studio": ["nuxt-studio@1.6.0", "", { "dependencies": { "@ai-sdk/gateway": "^3.0.91", "@ai-sdk/vue": "^3.0.149", "@iconify-json/lucide": "^1.2.101", "@nuxtjs/mdc": "^0.21.1", "@vueuse/core": "^14.2.1", "ai": "^6.0.149", "defu": "^6.1.7", "destr": "^2.0.5", "js-yaml": "^4.1.1", "minimatch": "^10.2.5", "nuxt-component-meta": "^0.17.2", "remark-mdc": "^3.10.0", "shiki": "^4.0.2", "unstorage": "1.17.5", "zod": "^4.3.6", "zod-to-json-schema": "^3.25.2" }, "optionalDependencies": { "ipx": "^3.1.1" } }, "sha512-7j0fAeZpNXw5XgiB+jUCXoujCIOAiMvxSETbzfqzwdC/kSh7YFBArd741hPfEOgKgVAmWbW9zU2/4FJy/K+6iA=="],
 
     "@img/sharp-wasm32/@emnapi/runtime": ["@emnapi/runtime@1.10.0", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-ewvYlk86xUoGI0zQRNq/mC+16R1QeDlKQy21Ki3oSYXNgLb45GV1P6A0M+/s6nyCuNDqe5VpaY84BzXGwVbwFA=="],
 
