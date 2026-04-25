@@ -22,6 +22,8 @@
     "reportUnusedDisableDirectives": "error"
   },
   "rules": {
-    "typescript/no-floating-promises": "error"
+    "typescript/no-floating-promises": "error",
+    "typescript/unbound-method": "off",
+    "typescript/restrict-template-expressions": "off"
   }
 }
