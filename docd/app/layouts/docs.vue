@@ -44,7 +44,7 @@
         :class="isDashed ? 'border-dashed' : ''"
       >
         <DocsMobileBar />
-        <div class="border-b" :class="isDashed ? 'border-dashed' : ''">
+        <div class="hidden border-b tablet:block" :class="isDashed ? 'border-dashed' : ''">
           <UiContainer class="flex h-(--header-height) items-center">
             <DocsHeader />
           </UiContainer>
