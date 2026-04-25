@@ -1,5 +1,18 @@
 # docd
 
+## 0.0.4
+
+### Patch Changes
+
+- [`84a4974`](https://github.com/BayBreezy/docd/commit/84a497417c2df851e4ffcf959f61e48702197d79) Thanks [@BayBreezy](https://github.com/BayBreezy)! - ## 🚀 Features
+
+  - Make the Theme Customizer mobile-friendly by adding a responsive design and improving the user interface for smaller screens.
+  - Add Theme Customizer to the mobile navigation bar.
+
+  ## 🐛 Bug Fixes
+
+  - Hide DocHeader on mobile devices.
+
 ## 0.0.3
 
 ### Patch Changes
