@@ -1,6 +1,6 @@
 {
   "name": "create-docd",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Scaffold a new Docd project from the default starter template.",
   "repository": {
     "type": "git",
