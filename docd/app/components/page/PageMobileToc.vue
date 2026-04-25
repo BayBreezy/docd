@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="hasToc"
-    class="sticky top-[calc(var(--header-height)*2)] z-40 tablet:top-[calc(var(--header-height))] xl:hidden"
-  >
+  <div v-if="hasToc" class="sticky top-[calc(var(--header-height))] z-40 xl:hidden">
     <!-- Always-mounted hidden container — keeps scrollspy alive regardless of popover state -->
     <div
       ref="spyRoot"
