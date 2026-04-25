@@ -1,8 +1,9 @@
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readdir, stat, writeFile } from "node:fs/promises";
+import { cpus } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
-
-import { getComponentMeta } from "nuxt-component-meta/parser";
+import { fileURLToPath } from "node:url";
+import { Worker } from "node:worker_threads";
 
 import {
   componentNameFromPath,
@@ -170,6 +171,67 @@ function normalizeExposed(exposed: RawExposedMeta): ProseComponentMetaExposed {
   };
 }
 
+interface WorkerResult {
+  manifestPath: string;
+  raw: Record<string, unknown[]> | null;
+  ok: boolean;
+  error?: string;
+}
+
+const WORKER_PATH = fileURLToPath(new URL("./component-meta-worker.mjs", import.meta.url));
+
+async function runInWorkers(
+  components: ProseComponentMetaSource[],
+  opts: { rootDir: string; cache: boolean; cacheDir: string }
+): Promise<WorkerResult[]> {
+  const numWorkers = Math.min(cpus().length, components.length, 8);
+  const chunkSize = Math.ceil(components.length / numWorkers);
+
+  const chunks: ProseComponentMetaSource[][] = [];
+  for (let i = 0; i < components.length; i += chunkSize) {
+    chunks.push(components.slice(i, i + chunkSize));
+  }
+
+  const spawnWorker = (batch: ProseComponentMetaSource[]) =>
+    new Promise<WorkerResult[]>((resolve, reject) => {
+      const worker = new Worker(WORKER_PATH, {
+        workerData: {
+          batch: batch.map((c) => ({
+            manifestPath: c.manifestPath,
+            absolutePath: c.absolutePath,
+          })),
+          rootDir: opts.rootDir,
+          cacheDir: opts.cacheDir,
+        },
+      });
+      worker.on("message", resolve);
+      worker.on("error", reject);
+      worker.on("exit", (code) => {
+        if (code !== 0) reject(new Error(`Component meta worker exited with code ${code}`));
+      });
+    });
+
+  try {
+    const results = await Promise.all(chunks.map(spawnWorker));
+    return results.flat();
+  } catch {
+    // Fall back to sequential processing if workers fail.
+    const { getComponentMeta } = await import("nuxt-component-meta/parser");
+    return components.map(({ manifestPath, absolutePath }) => {
+      try {
+        const raw = getComponentMeta(absolutePath, {
+          rootDir: opts.rootDir,
+          cache: opts.cache,
+          cacheDir: opts.cacheDir,
+        }) as Record<string, unknown[]>;
+        return { manifestPath, raw, ok: true };
+      } catch (err) {
+        return { manifestPath, raw: null, ok: false, error: String(err) };
+      }
+    });
+  }
+}
+
 async function listVueFiles(dir: string): Promise<string[]> {
   const files: string[] = [];
   const entries = await readdir(dir, { withFileTypes: true });
@@ -233,10 +295,12 @@ export async function generateProseComponentMeta(
   );
   let hasChanges = sources.length !== Object.keys(previousManifest.components || {}).length;
 
+  // First pass: resolve hashes and split into cache hits vs misses.
+  const cacheMisses: ProseComponentMetaSource[] = [];
+
   for (const component of sources) {
     const stats = await stat(component.absolutePath);
     const sourceHash = `${stats.mtimeMs}:${stats.size}`;
-
     sourceHashes[component.manifestPath] = sourceHash;
 
     const cachedEntry = previousManifest.components?.[component.manifestPath];
@@ -244,27 +308,33 @@ export async function generateProseComponentMeta(
 
     if (cachedEntry && cachedHash === sourceHash) {
       components[component.manifestPath] = cachedEntry;
-      continue;
+    } else {
+      hasChanges = true;
+      cacheMisses.push(component);
     }
+  }
 
-    hasChanges = true;
-
-    const meta = getComponentMeta(component.absolutePath, {
+  // Second pass: process cache misses in parallel worker threads.
+  if (cacheMisses.length > 0) {
+    const rawResults = await runInWorkers(cacheMisses, {
       rootDir: options.rootDir,
       cache: options.cache ?? true,
-      cacheDir: options.cacheDir,
+      cacheDir: options.cacheDir ?? "",
     });
 
-    const name = componentNameFromPath(component.manifestPath);
-    components[component.manifestPath] = {
-      name,
-      tag: componentTagFromName(name),
-      path: component.manifestPath,
-      props: meta.props.map(normalizeProp),
-      slots: meta.slots.map(normalizeSlot),
-      events: meta.events.map(normalizeEvent),
-      exposed: meta.exposed.map(normalizeExposed),
-    };
+    for (const result of rawResults) {
+      if (!result.ok || !result.raw) continue;
+      const name = componentNameFromPath(result.manifestPath);
+      components[result.manifestPath] = {
+        name,
+        tag: componentTagFromName(name),
+        path: result.manifestPath,
+        props: (result.raw.props ?? []).map(normalizeProp),
+        slots: (result.raw.slots ?? []).map(normalizeSlot),
+        events: (result.raw.events ?? []).map(normalizeEvent),
+        exposed: (result.raw.exposed ?? []).map(normalizeExposed),
+      };
+    }
   }
 
   if (!hasChanges) {
