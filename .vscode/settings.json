@@ -1,0 +1,42 @@
+{
+  "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "mdc.enableFormatting": true,
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.md": "mdc",
+    "*.mdc": "mdc"
+  },
+  "[mdc]": {
+    "editor.defaultFormatter": "Nuxt.mdc",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "tailwindCSS.classFunctions": ["tw", "clsx", "tw\\.[a-z-]+"],
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "tv\\(([^)(]*(?:\\([^)(]*(?:\\([^)(]*(?:\\([^)(]*\\)[^)(]*)*\\)[^)(]*)*\\)[^)(]*)*)\\)",
+      "\"(.*?)\""
+    ],
+    // enable for 'class:' in md files
+    "class:\\s*\"([^\"]*)\"",
+    "tw`(.*?)`",
+    "tw\\('(.*?)'\\)",
+    "tw\\(\\s*('(.*?)'|\"(.*?)\")\\s*\\)",
+    [
+      "\\btv\\(\\s*((?:\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'|`(?:\\\\.|[^`\\\\])*`|[^)]*)*)\\)",
+      "[\"']([^\"']*)[\"']"
+    ],
+    [
+      "\\btv\\(\\s*((?:\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*'|`(?:\\\\.|[^`\\\\])*`|[^)]*)*)\\)",
+      "`([^`]*)`"
+    ]
+  ]
+}

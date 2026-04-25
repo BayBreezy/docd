@@ -1,0 +1,88 @@
+name: Bug Report
+description: Report a reproducible bug in Docd
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill out as much as possible so we can reproduce and fix it quickly.
+
+  - type: input
+    id: version
+    attributes:
+      label: Docd version
+      placeholder: e.g. 0.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: nuxt-version
+    attributes:
+      label: Nuxt version
+      placeholder: e.g. 4.4.2
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node / Bun version
+      placeholder: e.g. Bun 1.3.13
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps that reliably trigger the bug.
+      placeholder: |
+        1. Add `docd` as a layer in `nuxt.config.ts`
+        2. Create a markdown page with `componentApi.path` set to ...
+        3. Run `bun run dev`
+        4. See error
+    validations:
+      required: true
+
+  - type: input
+    id: reproduction-link
+    attributes:
+      label: Reproduction link
+      description: A link to a minimal repo, StackBlitz, or CodeSandbox that reproduces the issue. Bugs without a reproduction are harder to triage.
+      placeholder: https://github.com/...
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Logs, screenshots, or anything else that might help.

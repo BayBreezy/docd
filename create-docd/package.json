@@ -1,0 +1,21 @@
+{
+  "name": "create-docd",
+  "version": "0.0.1",
+  "description": "Scaffold a new Docd project from the default starter template.",
+  "bin": {
+    "create-docd": "./bin/create-docd.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.2.0",
+    "@nuxt/cli": "^3.34.0",
+    "picocolors": "^1.1.1"
+  }
+}

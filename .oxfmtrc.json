@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "ignorePatterns": ["**/*.md", "**/*.mdc"],
+  "trailingComma": "es5",
+  "sortTailwindcss": {
+    "stylesheet": "./docd/app/assets/css/tailwind.css",
+    "functions": ["tv", "tw"],
+    "attributes": [":class"]
+  },
+  "sortImports": true,
+  "vueIndentScriptAndStyle": true,
+  "sortPackageJson": { "sortScripts": true }
+}

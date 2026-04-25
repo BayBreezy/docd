@@ -1,0 +1,21 @@
+{
+  "name": "docd-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nr dev:prepare && nuxi dev --host",
+    "dev:prepare": "nuxt prepare",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "docd": "latest"
+  },
+  "devDependencies": {
+    "@antfu/ni": "latest",
+    "nuxt": "^4.4.2",
+    "typescript": "^6.0.3",
+    "vue": "latest"
+  }
+}

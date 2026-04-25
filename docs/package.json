@@ -1,0 +1,26 @@
+{
+  "name": "@docd/docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "bun run dev:prepare && nuxi dev --host",
+    "dev:prepare": "node ../scripts/run-nuxt-prepare.mjs",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@takumi-rs/core": "^1.0.16",
+    "docd": "*",
+    "nuxt-studio": "1.6.0",
+    "slugify": "^1.6.9"
+  },
+  "devDependencies": {
+    "nuxt": "^4.4.2",
+    "nuxt-studio": "1.6.1",
+    "typescript": "^6.0.3",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "packageManager": "bun@1.3.13"
+}

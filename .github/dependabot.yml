@@ -1,0 +1,74 @@
+version: 2
+updates:
+  # Root workspace
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "09:00"
+      timezone: America/Jamaica
+    open-pull-requests-limit: 10
+    groups:
+      nuxt:
+        patterns:
+          - "nuxt"
+          - "@nuxt/*"
+          - "@nuxtjs/*"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tailwind-*"
+          - "tw-*"
+      vueuse:
+        patterns:
+          - "@vueuse/*"
+      oxtools:
+        patterns:
+          - "oxlint*"
+          - "oxfmt"
+
+  # docd layer package
+  - package-ecosystem: npm
+    directory: /docd
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "09:00"
+      timezone: America/Jamaica
+    open-pull-requests-limit: 10
+    groups:
+      nuxt:
+        patterns:
+          - "nuxt"
+          - "@nuxt/*"
+          - "@nuxtjs/*"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tailwind-*"
+          - "tw-*"
+      vueuse:
+        patterns:
+          - "@vueuse/*"
+
+  # create-docd scaffolder
+  - package-ecosystem: npm
+    directory: /create-docd
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "09:00"
+      timezone: America/Jamaica
+    open-pull-requests-limit: 5
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "09:00"
+      timezone: America/Jamaica
