@@ -10,7 +10,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "docd": "latest"
+    "@baybreezy/docd": "latest"
   },
   "devDependencies": {
     "@antfu/ni": "latest",

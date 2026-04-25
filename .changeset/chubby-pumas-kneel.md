@@ -1,6 +1,6 @@
 ---
 "create-docd": patch
-"docd": patch
+"@baybreezy/docd": patch
 ---
 
 Initial release

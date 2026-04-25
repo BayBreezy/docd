@@ -452,7 +452,7 @@ cd my-nuxt-app
 
   Add the Docd layer package:
 
-::prose-pm-install{name="docd"}
+::prose-pm-install{name="@baybreezy/docd"}
 ::
 
   Start development:
