@@ -1,6 +1,6 @@
 {
   "name": "docd",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Nuxt layer for building documentation sites with UI Thing.",
   "files": [
     "app",
