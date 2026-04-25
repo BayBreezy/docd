@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     "@morev/vue-transitions/nuxt",
     "vue-sonner/nuxt",
     resolver.resolve("./modules/routing"),
+    resolver.resolve("./modules/css"),
     resolver.resolve("./modules/config"),
     resolver.resolve("./modules/custom-icons"),
     resolver.resolve("./modules/prose-component-meta"),
