@@ -13,7 +13,7 @@
       >
         <ClientOnly>
           <template #fallback>
-            <Icon name="svg-spinners:180-ring-with-bg" />
+            <Icon name="lucide:sun-medium" />
           </template>
           <Icon :name="iconName" />
         </ClientOnly>
