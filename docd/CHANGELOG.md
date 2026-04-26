@@ -1,5 +1,11 @@
 # docd
 
+## 0.0.8
+
+### Patch Changes
+
+- [`1cbce30`](https://github.com/BayBreezy/docd/commit/1cbce30598061846668331a7daef7f81bd349787) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Added `@iconify-json/material-icon-theme` as a dependency
+
 ## 0.0.7
 
 ### Patch Changes
