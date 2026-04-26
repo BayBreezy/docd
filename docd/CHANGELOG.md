@@ -1,5 +1,11 @@
 # docd
 
+## 0.0.9
+
+### Patch Changes
+
+- [`39ade50`](https://github.com/BayBreezy/docd/commit/39ade50a15c589d96084323eaa5659847ced2bbb) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add README and LICENSE to layer root
+
 ## 0.0.8
 
 ### Patch Changes
