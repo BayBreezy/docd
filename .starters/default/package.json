@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "clean": "rm -rf .data .nuxt .output dist node_modules && bun i",
     "dev": "nr dev:prepare && nuxi dev --host",
-    "dev:prepare": "nuxt prepare",
     "generate": "nuxt generate",
+    "prepare": "nuxt prepare",
     "preview": "nuxt preview"
   },
   "dependencies": {
