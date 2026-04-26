@@ -1,5 +1,16 @@
 # docd
 
+## 0.0.7
+
+### Patch Changes
+
+- [`e91f617`](https://github.com/BayBreezy/docd/commit/e91f6178db0a06c811099a790a88d077099cf3ea) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Update some doc components and change how defaults are assigned in the config module.
+
+  - DocsGithubLink: Remove dark mode text color class.
+  - DocsThemeCustomizer: Add a fallback for the popover trigger.
+  - DocsThemeToggler: Add a fallback for the theme icon.
+  - Use `defu` in the config module to ensure that user-provided config values are merged with defaults rather than replaced.
+
 ## 0.0.6
 
 ### Patch Changes
