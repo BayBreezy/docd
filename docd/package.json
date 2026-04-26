@@ -33,7 +33,7 @@
     "@baybreezy/file-extension-icon": "^0.0.4",
     "@iconify-json/lucide": "^1.2.103",
     "@iconify-json/simple-icons": "^1.2.79",
-    "@iconify/utils": "^3.1.0",
+    "@iconify/utils": "^3.1.1",
     "@morev/vue-transitions": "^3.0.5",
     "@nuxt/content": "3.13.0",
     "@nuxt/fonts": "^0.14.0",
