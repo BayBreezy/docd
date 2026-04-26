@@ -21,6 +21,6 @@ browserFrameUrl: https://example.com
 description: Ship fast, flexible, and SEO-optimized documentation with beautiful
   design out of the box. Docd brings together the best of the Nuxt ecosystem.
 headline: Write beautiful docs with Markdown
-siteName: Docd
+siteName: My Docs
 ---
 ::
