@@ -2,9 +2,9 @@
 
 > Build beautiful documentation sites with Nuxt, Markdown, and Vue components.
 
-[![npm version](https://img.shields.io/npm/v/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npmjs.com/package/docd)
-[![npm downloads](https://img.shields.io/npm/dm/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npm.chart.dev/docd)
-[![License](https://img.shields.io/npm/l/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npmjs.com/package/docd)
+[![npm version](https://img.shields.io/npm/v/@baybreezy/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npmjs.com/package/@baybreezy/docd)
+[![npm downloads](https://img.shields.io/npm/dm/@baybreezy/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npm.chart.dev/@baybreezy/docd)
+[![License](https://img.shields.io/npm/l/@baybreezy/docd.svg?style=flat&colorA=020420&colorB=EEEEEE)](https://npmjs.com/package/@baybreezy/docd)
 
 ## Quick Start
 
@@ -102,7 +102,7 @@ Full configuration reference: [docd.uithing.com](https://docd.uithing.com)
 
   | Package | Description |
   |---|---|
-  | [`docd/`](./docd) | The publishable Nuxt layer (`docd` on npm) |
+  | [`docd/`](./docd) | The publishable Nuxt layer (`@baybreezy/docd` on npm) |
   | [`create-docd/`](./create-docd) | Scaffolding CLI (`create-docd` on npm) |
   | [`docs/`](./docs) | Official documentation site |
   | [`.starters/`](./.starters) | Starter templates used by `create-docd` |
