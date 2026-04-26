@@ -1,5 +1,6 @@
+import { readFile } from "node:fs/promises";
+
 import { addVitePlugin, createResolver, defineNuxtModule } from "@nuxt/kit";
-import { joinURL } from "ufo";
 
 export default defineNuxtModule({
   meta: {
@@ -8,24 +9,30 @@ export default defineNuxtModule({
   setup(_options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    // Absolute path to the layer's tailwind entry — this is the file that owns
-    // `@import "tailwindcss"` and therefore controls Tailwind's scanner.
-    const tailwindCssPath = resolver.resolve("../app/assets/css/tailwind.css");
+    // Absolute path to the layer's tailwind entry — resolved from this module's
+    // location so it stays correct whether docd is local or installed from npm.
+    const tailwindCssPath = resolver.resolve("../app/assets/css/tailwind.css").replace(/\\/g, "/");
 
-    // The consuming app's content directory.  We convert to forward-slashes so
-    // the injected @source glob works on Windows too.
-    const contentDir = joinURL(nuxt.options.rootDir, "content").replace(/\\/g, "/");
+    // Absolute paths that Tailwind needs to scan.
+    const rootDir = nuxt.options.rootDir.replace(/\\/g, "/");
+    const layerAppDir = resolver.resolve("../app").replace(/\\/g, "/");
 
-    // Inject `@source <contentDir>/**/*` into tailwind.css
+    // Use the `load` hook rather than `transform` so our modified source is
+    // visible to @tailwindcss/vite's transform hook (which has enforce:"pre"
+    // and is registered earlier). Vite always runs `load` before `transform`.
     addVitePlugin({
       name: "docd:inject-tailwind-sources",
       enforce: "pre",
-      transform(code: string, id: string) {
-        if (id.split("?")[0] !== tailwindCssPath) return null;
-        return {
-          code: `${code}\n@source ${JSON.stringify(`${contentDir}/**/*`)};`,
-          map: null,
-        };
+      async load(id) {
+        const cleanId = id?.split("?")?.[0]?.replace(/\\/g, "/");
+        if (cleanId !== tailwindCssPath) return null;
+
+        const code = await readFile(tailwindCssPath, "utf8");
+        return [
+          code,
+          `@source ${JSON.stringify(`${rootDir}/**/*`)};`,
+          `@source ${JSON.stringify(`${layerAppDir}/**/*`)};`,
+        ].join("\n");
       },
     });
 
