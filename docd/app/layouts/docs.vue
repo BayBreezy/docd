@@ -22,11 +22,11 @@
         class="mt-auto flex h-(--header-height) items-center justify-between gap-3 border-t px-2"
         :class="isDashed ? 'border-dashed' : ''"
       >
-        <template v-if="github">
+        <!-- <template v-if="hasGithub">
           <DocsGithubLink />
-        </template>
+        </template> -->
         <div class="ml-auto flex items-center gap-1.5">
-          <template v-if="github && (!hideThemeCustomizer || !hideLightDarkToggle)">
+          <template v-if="hasGithub && (!hideThemeCustomizer || !hideLightDarkToggle)">
             <UiDivider
               :type="isDashed ? 'dashed' : 'solid'"
               orientation="vertical"
@@ -60,5 +60,6 @@
 
 <script lang="ts" setup>
   const { navigation } = await useDocPage();
-  const { isDashed, github, hideSearch, hideLightDarkToggle, hideThemeCustomizer } = useDocd();
+  const { isDashed, github, hasGithub, hideSearch, hideLightDarkToggle, hideThemeCustomizer } =
+    useDocd();
 </script>

@@ -20,6 +20,9 @@ export function useDocd() {
   const github = computed(
     () => ((appConfig.docd as DocdConfig | undefined)?.github ?? {}) as DocdGithubConfig
   );
+  const hasGithub = computed(
+    () => !!(github.value?.repo && github.value?.branch && github.value?.contentDir)
+  );
 
   /* =====================================
   =               Footer                 =
@@ -82,6 +85,7 @@ export function useDocd() {
     isDashed,
     extraLinks,
     github,
+    hasGithub,
     hideSearch,
     // transition
     activeName,
