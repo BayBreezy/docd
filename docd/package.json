@@ -32,6 +32,7 @@
   "dependencies": {
     "@baybreezy/file-extension-icon": "^0.0.4",
     "@iconify-json/lucide": "^1.2.103",
+    "@iconify-json/material-icon-theme": "^1.2.60",
     "@iconify-json/simple-icons": "^1.2.79",
     "@iconify/utils": "^3.1.1",
     "@morev/vue-transitions": "^3.0.5",
