@@ -22,9 +22,9 @@
         class="mt-auto flex h-(--header-height) items-center justify-between gap-3 border-t px-2"
         :class="isDashed ? 'border-dashed' : ''"
       >
-        <!-- <template v-if="hasGithub">
+        <template v-if="hasGithub">
           <DocsGithubLink />
-        </template> -->
+        </template>
         <div class="ml-auto flex items-center gap-1.5">
           <template v-if="hasGithub && (!hideThemeCustomizer || !hideLightDarkToggle)">
             <UiDivider
