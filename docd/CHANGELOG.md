@@ -1,5 +1,11 @@
 # docd
 
+## 0.0.5
+
+### Patch Changes
+
+- [`62de337`](https://github.com/BayBreezy/docd/commit/62de337e0f37818679b7aec180750c8f3b2c75de) Thanks [@BayBreezy](https://github.com/BayBreezy)! - - Added `hasGithub` computed property and update template render conditions
+
 ## 0.0.4
 
 ### Patch Changes
