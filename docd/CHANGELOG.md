@@ -1,5 +1,15 @@
 # docd
 
+## 0.0.10
+
+### Patch Changes
+
+- [`79e1381`](https://github.com/BayBreezy/docd/commit/79e1381ea6975c951b27fbed3f84a403e5a85ed6) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Remove auto-injection of component API blocks for built-in prose components
+
+  Previously, the layer automatically appended component API sections (props, slots, events, exposed) to docs pages under `4.prose/**` based on a built-in registry and filename convention fallback. This caused unwanted component API blocks to appear in apps that extend the layer.
+
+  The auto-injection logic has been removed entirely. Component API blocks are now only rendered when explicitly declared in a page's front matter via the `componentApi` field. The metadata generation and runtime renderers (`ProseComponentApi`, `ProseComponentProps`, etc.) remain fully functional for explicit usage.
+
 ## 0.0.9
 
 ### Patch Changes
