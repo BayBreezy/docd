@@ -45,7 +45,7 @@
    */
   export const fieldStyles = tv({
     slots: {
-      base: "flex flex-col gap-2 py-4",
+      base: "flex flex-col gap-2 p-4",
       name: "flex flex-wrap items-center gap-2",
       nameText: "font-semibold text-foreground",
       typeBadge: "rounded-md px-1.5 py-0.5 text-[11px]",
