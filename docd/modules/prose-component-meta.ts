@@ -4,8 +4,6 @@ import { addTemplate, createResolver, defineNuxtModule, logger, updateTemplates 
 
 import {
   appendComponentApiBlocks,
-  builtInComponentApiItems,
-  isBuiltInProseDocFile,
   projectComponentApiConfig,
   warnForMissingComponentPaths,
   withAutoTitles,
@@ -83,21 +81,6 @@ export default defineNuxtModule({
         layerRoot,
         warn: (message: string) => log.warn(message),
       };
-
-      if (isBuiltInProseDocFile(event.content)) {
-        const { heading, items, explicit } = builtInComponentApiItems(event.content, context);
-
-        if (!items.length) {
-          return;
-        }
-
-        if (explicit) {
-          warnForMissingComponentPaths(event.content, items, context);
-        }
-
-        event.content = await appendComponentApiBlocks(event.content, items, heading);
-        return;
-      }
 
       const componentApi = projectComponentApiConfig(event.content);
 

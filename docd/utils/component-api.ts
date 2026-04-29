@@ -36,25 +36,25 @@ export const BUILT_IN_PROSE_COMPONENT_API_REGISTRY: Record<
   false | readonly BuiltInComponentApiRegistryItem[]
 > = {
   field: [
-    { path: "app/components/content/prose/ProseField.global.vue" },
-    { path: "app/components/content/prose/ProseFieldGroup.global.vue" },
+    { path: "app/components/content/prose/ProseField.vue" },
+    { path: "app/components/content/prose/ProseFieldGroup.vue" },
   ],
   images: [
-    { path: "app/components/content/prose/ProseImg.global.vue" },
-    { path: "app/components/content/prose/ProseColorModeImage.global.vue" },
+    { path: "app/components/content/prose/ProseImg.vue" },
+    { path: "app/components/content/prose/ProseColorModeImage.vue" },
   ],
   "icon-list": [
-    { path: "app/components/content/prose/ProseIconList.global.vue" },
-    { path: "app/components/content/prose/ProseLi.global.vue" },
+    { path: "app/components/content/prose/ProseIconList.vue" },
+    { path: "app/components/content/prose/ProseLi.vue" },
   ],
   "package-manager": [
-    { path: "app/components/content/prose/ProsePmInstall.global.vue" },
-    { path: "app/components/content/prose/ProsePmRun.global.vue" },
-    { path: "app/components/content/prose/ProsePmX.global.vue" },
+    { path: "app/components/content/prose/ProsePmInstall.vue" },
+    { path: "app/components/content/prose/ProsePmRun.vue" },
+    { path: "app/components/content/prose/ProsePmX.vue" },
   ],
   steps: [
-    { path: "app/components/content/prose/ProseSteps.global.vue" },
-    { path: "app/components/content/prose/ProseStep.global.vue" },
+    { path: "app/components/content/prose/ProseSteps.vue" },
+    { path: "app/components/content/prose/ProseStep.vue" },
   ],
   "code-snippet": false,
   typography: false,
@@ -125,7 +125,7 @@ export function componentNameFromSlug(slug: string) {
 }
 
 export function inferredBuiltInProseComponentPathFromSlug(slug: string) {
-  return `${BUILT_IN_PROSE_COMPONENT_ROOT}${componentNameFromSlug(slug)}.global.vue`;
+  return `${BUILT_IN_PROSE_COMPONENT_ROOT}${componentNameFromSlug(slug)}.vue`;
 }
 
 export function normalizeComponentApiLayout(

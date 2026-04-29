@@ -1,19 +1,12 @@
 import { existsSync } from "node:fs";
-import { basename, extname } from "node:path";
 
 import { parseMarkdown } from "@nuxtjs/mdc/runtime";
 
 import {
-  BUILT_IN_PROSE_COMPONENT_API_REGISTRY,
   DEFAULT_COMPONENT_API_LAYOUT,
-  DEFAULT_COMPONENT_API_SECTIONS,
   componentLabelFromPath,
   componentNameFromPath,
-  inferredBuiltInProseComponentPathFromSlug,
   normalizeComponentApiConfig,
-  normalizeComponentApiLayout,
-  normalizeComponentApiSections,
-  type BuiltInComponentApiRegistryItem,
   type NormalizedComponentApiItem,
 } from "./component-api";
 import { resolveComponentApiSourcePath } from "./component-api-discovery";
@@ -101,62 +94,6 @@ export function withAutoTitles(items: NormalizedComponentApiItem[]) {
     ...item,
     title: item.title ?? (needsAutoTitles ? componentNameFromPath(item.path) : undefined),
   }));
-}
-
-function registryItemsToNormalizedItems(
-  items: readonly BuiltInComponentApiRegistryItem[],
-  defaults: Pick<NormalizedComponentApiItem, "layout" | "sections">
-) {
-  return items.map(
-    (item) =>
-      ({
-        path: item.path,
-        title: item.title,
-        layout: normalizeComponentApiLayout(item.layout, defaults.layout),
-        sections: normalizeComponentApiSections(item.sections, defaults.sections),
-      }) satisfies NormalizedComponentApiItem
-  );
-}
-
-function inferredItem(
-  slug: string,
-  defaults: Pick<NormalizedComponentApiItem, "layout" | "sections">,
-  context: ComponentApiTransformerContext
-) {
-  const inferredPath = inferredBuiltInProseComponentPathFromSlug(slug);
-  const resolvedPath = resolveComponentApiSourcePath({
-    rootDir: context.rootDir,
-    layerRoot: context.layerRoot,
-    path: inferredPath,
-  });
-
-  if (!existsSync(resolvedPath.absolutePath)) {
-    return [];
-  }
-
-  return [
-    {
-      path: inferredPath,
-      layout: defaults.layout,
-      sections: [...defaults.sections],
-    } satisfies NormalizedComponentApiItem,
-  ];
-}
-
-function defaultItemSettings(config: ReturnType<typeof normalizeComponentApiConfig>) {
-  if (config && config !== false) {
-    return {
-      heading: config.heading,
-      layout: config.layout,
-      sections: config.sections,
-    };
-  }
-
-  return {
-    heading: undefined,
-    layout: DEFAULT_COMPONENT_API_LAYOUT,
-    sections: [...DEFAULT_COMPONENT_API_SECTIONS],
-  };
 }
 
 function buildComponentApiBlockSource(item: NormalizedComponentApiItem, title?: string) {
@@ -314,65 +251,8 @@ function appendTocLinks(
   };
 }
 
-export function isBuiltInProseDocFile(file: ComponentApiTransformerContent) {
-  return /^docs\/4\.prose\/.+\.md$/i.test(fileId(file));
-}
-
-export function builtInProseDocSlug(file: ComponentApiTransformerContent) {
-  return basename(fileId(file), extname(fileId(file)));
-}
-
 export function projectComponentApiConfig(file: ComponentApiTransformerContent) {
   return normalizeComponentApiConfig(file.componentApi);
-}
-
-export function builtInComponentApiItems(
-  file: ComponentApiTransformerContent,
-  context: ComponentApiTransformerContext
-) {
-  const config = normalizeComponentApiConfig(file.componentApi);
-
-  if (config === false) {
-    return {
-      heading: undefined,
-      items: [] as NormalizedComponentApiItem[],
-      explicit: false,
-    };
-  }
-
-  if (config?.hasExplicitComponents) {
-    return {
-      heading: config.heading,
-      items: withAutoTitles(config.components),
-      explicit: true,
-    };
-  }
-
-  const slug = builtInProseDocSlug(file);
-  const defaults = defaultItemSettings(config);
-  const registryEntry = BUILT_IN_PROSE_COMPONENT_API_REGISTRY[slug];
-
-  if (registryEntry === false) {
-    return {
-      heading: defaults.heading,
-      items: [] as NormalizedComponentApiItem[],
-      explicit: false,
-    };
-  }
-
-  if (Array.isArray(registryEntry)) {
-    return {
-      heading: defaults.heading,
-      items: withAutoTitles(registryItemsToNormalizedItems(registryEntry, defaults)),
-      explicit: false,
-    };
-  }
-
-  return {
-    heading: defaults.heading,
-    items: inferredItem(slug, defaults, context),
-    explicit: false,
-  };
 }
 
 export function warnForMissingComponentPaths(
