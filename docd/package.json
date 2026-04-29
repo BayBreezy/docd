@@ -1,6 +1,6 @@
 {
   "name": "@baybreezy/docd",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A Nuxt layer for building documentation sites with UI Thing.",
   "repository": {
     "type": "git",

@@ -1,5 +1,11 @@
 # docd
 
+## 0.0.11
+
+### Patch Changes
+
+- [`afdee97`](https://github.com/BayBreezy/docd/commit/afdee9783bae113139610638ce0c430c00613a1e) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Correct padding in base style for `ProseField` component
+
 ## 0.0.10
 
 ### Patch Changes
