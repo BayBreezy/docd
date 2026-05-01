@@ -36,6 +36,44 @@ export default defineNuxtModule({
       },
     });
 
+    // Inject `@reference` into consuming-app CSS files that use `@apply` but
+    // don't already import or reference Tailwind. This gives them access to the
+    // layer's theme tokens without re-outputting Tailwind's stylesheet.
+    addVitePlugin({
+      name: "docd:inject-tailwind-reference",
+      enforce: "pre",
+      async load(id) {
+        const cleanId = id?.split("?")?.[0]?.replace(/\\/g, "/");
+
+        if (!cleanId?.endsWith(".css")) return null;
+        // Skip the layer's own tailwind entry — it already has @import "tailwindcss".
+        if (cleanId === tailwindCssPath) return null;
+        // Only touch files inside the consuming app root, not node_modules or the layer.
+        if (!cleanId.startsWith(`${rootDir}/`)) return null;
+        if (cleanId.startsWith(`${layerAppDir}/`)) return null;
+
+        let code: string;
+        try {
+          code = await readFile(cleanId, "utf8");
+        } catch {
+          return null;
+        }
+
+        // Skip files that already have reference
+        if (
+          code.includes('@import "tailwindcss"') ||
+          code.includes("@import 'tailwindcss'") ||
+          code.includes("@reference")
+        )
+          return null;
+
+        // Only inject when the file actually uses @apply to avoid unnecessary overhead.
+        if (!code.includes("@apply")) return null;
+
+        return `@reference ${JSON.stringify(tailwindCssPath)};\n${code}`;
+      },
+    });
+
     // Suppress noisy Vite warnings produced during Tailwind's build pass.
     nuxt.hook("vite:extendConfig", (config) => {
       const logger = config.customLogger;
