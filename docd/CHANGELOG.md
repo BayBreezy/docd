@@ -1,5 +1,13 @@
 # docd
 
+## 0.0.12
+
+### Patch Changes
+
+- [`b5fa40f`](https://github.com/BayBreezy/docd/commit/b5fa40f92256cb25a9324c6269fd0bf8434e107d) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add format prop to control filename formatting in `ProsePre` component
+
+- [`ca72ce1`](https://github.com/BayBreezy/docd/commit/ca72ce18df9b5a003779511bba74a9c34e543bab) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Handle empty route path in `useDocPage` for async data fetching
+
 ## 0.0.11
 
 ### Patch Changes
