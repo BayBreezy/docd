@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.1
+
+### Patch Changes
+
+- [`ef23f73`](https://github.com/BayBreezy/docd/commit/ef23f73d222041fab728c1e9ecf6a86e615a4710) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Update dependencies
+
 ## 0.1.0
 
 ### Minor Changes
