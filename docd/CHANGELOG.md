@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.0
+
+### Minor Changes
+
+- [`e5f78fb`](https://github.com/BayBreezy/docd/commit/e5f78fba9b1a52540814fca4b37ce240bfc89ee2) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add `expandNav` config option to control which nav collapsibles are expanded by default. Accepts `true` to expand all, a `number` for a specific 1-based position, or `number[]` for multiple positions.
+
 ## 0.0.12
 
 ### Patch Changes
