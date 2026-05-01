@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.3
+
+### Patch Changes
+
+- [`1b90ed9`](https://github.com/BayBreezy/docd/commit/1b90ed9af34cea5f4a10486e4484abbe8e06c3ff) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Removed `line-clamp-*` styles from og image templates
+
 ## 0.1.2
 
 ### Patch Changes
