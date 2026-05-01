@@ -59,11 +59,15 @@
      * Optional icon name to display next to the filename
      */
     icon?: string;
+    /**
+     * Format the filename: strip the file extension and apply title case
+     */
+    format?: boolean;
   }>();
 
   /**
    * Parse meta string and create a lowercase key map for easy checking
-   * Example: "noFormat hideHeader icon='lucide:code'" => Map { 'noformat' => true, 'hideheader' => true, 'icon' => 'lucide:code' }
+   * Example: "format hideHeader icon='lucide:code'" => Map { 'format' => true, 'hideheader' => true, 'icon' => 'lucide:code' }
    */
   const metaMap = computed(() => {
     const map = new Map<string, string | boolean>();
@@ -90,7 +94,7 @@
   });
 
   const hideCopyButton = ref(false);
-  const noFormatMeta = computed(() => metaMap.value.has("noformat"));
+  const formatMeta = computed(() => metaMap.value.has("format"));
   const hideHeaderMeta = computed(
     () => metaMap.value.has("hideheader") || metaMap.value.has("noheader")
   );
@@ -107,7 +111,7 @@
 
   const fileNameEdited = computed(() => {
     if (!props.filename) return;
-    if (noFormatMeta.value) return props.filename;
+    if (!props.format && !formatMeta.value) return props.filename;
 
     let processedName = props.filename;
 
