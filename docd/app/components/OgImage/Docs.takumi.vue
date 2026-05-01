@@ -13,17 +13,13 @@
       <div class="absolute -bottom-px left-0 h-px w-12 bg-zinc-700" />
       <div class="absolute bottom-0 -left-px h-12 w-px bg-zinc-700" />
 
-      <p
-        v-if="headline"
-        class="mb-4 line-clamp-1 text-2xl text-pretty whitespace-pre-line"
-        v-html="headline"
-      />
-      <h1 v-if="title" class="mb-4 line-clamp-1 text-5xl leading-none font-bold tracking-tighter">
+      <p v-if="headline" class="mb-4 text-2xl text-pretty whitespace-pre-line" v-html="headline" />
+      <h1 v-if="title" class="mb-4 text-5xl leading-none font-bold tracking-tighter">
         {{ title }}
       </h1>
       <p
         v-if="description"
-        class="line-clamp-3 text-3xl leading-normal text-pretty whitespace-pre-line opacity-80"
+        class="text-3xl leading-normal text-pretty whitespace-pre-line opacity-80"
       >
         {{ description }}
       </p>

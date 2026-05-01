@@ -16,12 +16,12 @@
       <div class="flex flex-col items-center text-center">
         <div v-if="logoSvg" v-html="logoSvg" class="mb-5" />
 
-        <h1 v-if="title" class="mb-4 line-clamp-1 text-5xl leading-none font-bold tracking-tighter">
+        <h1 v-if="title" class="mb-4 text-5xl leading-none font-bold tracking-tighter">
           {{ title }}
         </h1>
         <p
           v-if="description"
-          class="line-clamp-3 text-3xl text-pretty whitespace-pre-line opacity-80"
+          class="text-3xl text-pretty whitespace-pre-line opacity-80"
           v-html="description"
         />
       </div>
