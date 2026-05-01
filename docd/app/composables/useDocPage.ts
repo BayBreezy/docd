@@ -10,7 +10,7 @@ export const useDocPage = async () => {
 
   const [{ data: page }, { data: surround }, { data: navigation }] = await Promise.all([
     useAsyncData(
-      kebabCase(route.path),
+      kebabCase(route.path) || "root",
       () =>
         isLandingRoute
           ? queryCollection("landing" as keyof Collections)
@@ -22,7 +22,7 @@ export const useDocPage = async () => {
       { watch: [() => route.path] }
     ),
     useAsyncData(
-      `${kebabCase(route.path)}-surround`,
+      `${kebabCase(route.path) || "root"}-surround`,
       () => {
         if (isLandingRoute) {
           return Promise.resolve(null);
