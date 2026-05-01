@@ -50,7 +50,7 @@
         <!-- Collapsible item -->
         <UiCollapsible
           v-else
-          :default-open="route.path.includes(group.item.path)"
+          :default-open="isDefaultOpen(group.item)"
           class="flex flex-col border-b pb-4"
           :class="[
             isDashed ? 'border-dashed' : '',
@@ -76,7 +76,12 @@
             <div
               class="relative pt-1 pl-8 before:absolute before:left-2 before:h-[calc(100%-23px)] before:w-px before:bg-border dark:before:bg-accent"
             >
-              <DocsNav class="gap-4 first:mt-2" :items="group.item.children!" :nested="true" />
+              <DocsNav
+                class="gap-4 first:mt-2"
+                :items="group.item.children!"
+                :nested="true"
+                :depth="(props.depth ?? 1) + 1"
+              />
             </div>
           </UiCollapsibleContent>
         </UiCollapsible>
@@ -127,10 +132,22 @@
   const props = defineProps<{
     items: ContentNavigationItem[];
     nested?: boolean;
+    depth?: number;
   }>();
 
   const route = useRoute();
   const { isDashed } = useDocd();
+  const expandNav = useUIConfig("expandNav");
+
+  function isDefaultOpen(item: ContentNavigationItem): boolean {
+    if (route.path.includes(item.path)) return true;
+    const cfg = expandNav.value;
+    const d = props.depth ?? 1;
+    if (cfg === true) return true;
+    if (typeof cfg === "number") return d <= cfg;
+    if (Array.isArray(cfg)) return cfg.includes(d);
+    return false;
+  }
 
   type Group =
     | { type: "flat"; items: ContentNavigationItem[] }

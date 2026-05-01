@@ -203,6 +203,14 @@ export type DocdConfig = {
      */
     colorMode?: "light" | "dark";
     /**
+     * Controls which collapsible sections in the navigation sidebar are expanded by default.
+     *
+     * - `true`: expand all collapsibles at every depth
+     * - `number`: expand all collapsibles up to and including this depth level (1 = top-level only)
+     * - `number[]`: expand collapsibles at exactly these depth levels
+     */
+    expandNav?: true | number | number[];
+    /**
      * Page transition configuration. Set `name` to `"none"` to disable transitions entirely.
      *
      * @default {

@@ -17,6 +17,7 @@ interface DocdUIMap {
   borderType: BorderType;
   transition: DocdTransitionConfig;
   extraLinks: DocdExtraLink[];
+  expandNav: true | number | number[] | undefined;
 }
 
 export function useUIConfig<K extends keyof DocdUIMap>(section: K): ComputedRef<DocdUIMap[K]> {
@@ -33,4 +34,5 @@ const defaultValues: DocdUIMap = {
   borderType: "dashed",
   transition: { name: "fade", duration: 0.35, easing: "easeOut" },
   extraLinks: [],
+  expandNav: undefined,
 };
