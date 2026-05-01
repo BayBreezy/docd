@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.2
+
+### Patch Changes
+
+- [`82ee748`](https://github.com/BayBreezy/docd/commit/82ee7481979f50b2f2dfd307ddb870cee54d386d) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Inject Tailwind reference into consuming-app CSS files using @apply
+
 ## 0.1.1
 
 ### Patch Changes
