@@ -205,9 +205,9 @@ export type DocdConfig = {
     /**
      * Controls which collapsible sections in the navigation sidebar are expanded by default.
      *
-     * - `true`: expand all collapsibles at every depth
-     * - `number`: expand all collapsibles up to and including this depth level (1 = top-level only)
-     * - `number[]`: expand collapsibles at exactly these depth levels
+     * - `true`: expand all collapsibles
+     * - `number`: expand the collapsible at this 1-based position (e.g. `2` = second group)
+     * - `number[]`: expand collapsibles at these 1-based positions (e.g. `[2, 3]` = second and third groups)
      */
     expandNav?: true | number | number[];
     /**

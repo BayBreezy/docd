@@ -50,7 +50,7 @@
         <!-- Collapsible item -->
         <UiCollapsible
           v-else
-          :default-open="isDefaultOpen(group.item)"
+          :default-open="isDefaultOpen(group.item, gi)"
           class="flex flex-col border-b pb-4"
           :class="[
             isDashed ? 'border-dashed' : '',
@@ -139,13 +139,17 @@
   const { isDashed } = useDocd();
   const expandNav = useUIConfig("expandNav");
 
-  function isDefaultOpen(item: ContentNavigationItem): boolean {
+  function isDefaultOpen(item: ContentNavigationItem, gi: number): boolean {
     if (route.path.includes(item.path)) return true;
     const cfg = expandNav.value;
-    const d = props.depth ?? 1;
     if (cfg === true) return true;
-    if (typeof cfg === "number") return d <= cfg;
-    if (Array.isArray(cfg)) return cfg.includes(d);
+    // 1-based index among collapsible groups only
+    let collapsibleIdx = 0;
+    for (let i = 0; i <= gi; i++) {
+      if (groups.value[i]?.type === "collapsible") collapsibleIdx++;
+    }
+    if (typeof cfg === "number") return collapsibleIdx === cfg;
+    if (Array.isArray(cfg)) return cfg.includes(collapsibleIdx);
     return false;
   }
 
