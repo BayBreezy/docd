@@ -1,5 +1,15 @@
 # docd
 
+## 0.1.5
+
+### Patch Changes
+
+- [`e07a34e`](https://github.com/BayBreezy/docd/commit/e07a34e2c7b8601ba524510afe72cfeb06927aed) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Include target field in navigation query for docs
+
+- [`15c3111`](https://github.com/BayBreezy/docd/commit/15c3111af799f4bed0b58b68b90a59db58b9ecdc) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add missing type for page data in `useDocPage`
+
+- [`8626a15`](https://github.com/BayBreezy/docd/commit/8626a15e20b68086159698406e21dc8cf2affb67) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add optional target field to docs schema and use it in the default navigation query for docs collections.
+
 ## 0.1.4
 
 ### Patch Changes
