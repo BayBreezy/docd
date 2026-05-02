@@ -1,4 +1,4 @@
-import type { Collections, ContentNavigationItem } from "@nuxt/content";
+import type { Collections, ContentNavigationItem, PageCollectionItemBase } from "@nuxt/content";
 import { findPageHeadline } from "@nuxt/content/utils";
 import { kebabCase } from "lodash-es";
 
@@ -9,16 +9,16 @@ export const useDocPage = async () => {
   const isLandingRoute = route.path === "/";
 
   const [{ data: page }, { data: surround }, { data: navigation }] = await Promise.all([
-    useAsyncData(
+    useAsyncData<PageCollectionItemBase | null>(
       kebabCase(route.path) || "root",
       () =>
         isLandingRoute
-          ? queryCollection("landing" as keyof Collections)
+          ? (queryCollection("landing" as keyof Collections)
               .path(route.path)
-              .first()
-          : queryCollection("docs" as keyof Collections)
+              .first() as Promise<PageCollectionItemBase | null>)
+          : (queryCollection("docs" as keyof Collections)
               .path(route.path)
-              .first(),
+              .first() as Promise<PageCollectionItemBase | null>),
       { watch: [() => route.path] }
     ),
     useAsyncData(
