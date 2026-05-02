@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.6
+
+### Patch Changes
+
+- [`edfb7b7`](https://github.com/BayBreezy/docd/commit/edfb7b789d8818be5d21c5e17f53bab30d73c27c) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Enhance badge styling in PageHeader component
+
 ## 0.1.5
 
 ### Patch Changes
