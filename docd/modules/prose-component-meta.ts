@@ -29,7 +29,7 @@ export default defineNuxtModule({
   async setup(_, nuxt) {
     const resolver = createResolver(import.meta.url);
     const layerRoot = resolver.resolve("..");
-    const { componentsDir, outputFile, cacheDir } = resolveProseComponentPaths({
+    const { outputFile, cacheDir } = resolveProseComponentPaths({
       rootDir: nuxt.options.rootDir,
       layerRoot,
     });
@@ -61,7 +61,6 @@ export default defineNuxtModule({
       manifest = await generateProseComponentMeta({
         rootDir: nuxt.options.rootDir,
         layerRoot,
-        componentsDir,
         outputFile,
         cache: true,
         cacheDir,
@@ -101,7 +100,6 @@ export default defineNuxtModule({
     });
 
     nuxt.hook("builder:watch", async (_event, changedPath) => {
-      const normalizedComponentsDir = normalizeFsPath(componentsDir);
       const normalizedContentDir = normalizeFsPath(contentDir);
       const candidates = [
         normalizeFsPath(changedPath),
@@ -109,9 +107,6 @@ export default defineNuxtModule({
         normalizeFsPath(resolvePath(layerRoot, changedPath)),
       ];
 
-      const matchesProseComponent = candidates.some(
-        (candidate) => candidate.endsWith(".vue") && candidate.startsWith(normalizedComponentsDir)
-      );
       const matchesWatchedProjectComponent = candidates.some((candidate) =>
         watchedProjectComponentFiles.has(candidate)
       );
@@ -119,7 +114,7 @@ export default defineNuxtModule({
         (candidate) => candidate.endsWith(".md") && candidate.startsWith(normalizedContentDir)
       );
 
-      if (!matchesProseComponent && !matchesWatchedProjectComponent && !matchesContentFrontmatter) {
+      if (!matchesWatchedProjectComponent && !matchesContentFrontmatter) {
         return;
       }
 

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
-import { mkdir, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, stat, writeFile } from "node:fs/promises";
 import { cpus } from "node:os";
-import { dirname, join, relative, resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
 
@@ -110,7 +110,6 @@ export interface ProseComponentMetaSource {
 export interface GenerateProseComponentMetaOptions {
   rootDir: string;
   layerRoot: string;
-  componentsDir: string;
   outputFile: string;
   cache?: boolean;
   cacheDir?: string;
@@ -232,26 +231,6 @@ async function runInWorkers(
   }
 }
 
-async function listVueFiles(dir: string): Promise<string[]> {
-  const files: string[] = [];
-  const entries = await readdir(dir, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = join(dir, entry.name);
-
-    if (entry.isDirectory()) {
-      files.push(...(await listVueFiles(fullPath)));
-      continue;
-    }
-
-    if (entry.isFile() && fullPath.endsWith(".vue")) {
-      files.push(fullPath);
-    }
-  }
-
-  return files.sort((a, b) => a.localeCompare(b));
-}
-
 function readExistingManifest(outputFile: string): ProseComponentMetaManifest {
   if (!existsSync(outputFile)) {
     return EMPTY_PROSE_COMPONENT_META_MANIFEST;
@@ -273,18 +252,9 @@ export async function generateProseComponentMeta(
   options: GenerateProseComponentMetaOptions
 ): Promise<ProseComponentMetaManifest> {
   const previousManifest = readExistingManifest(options.outputFile);
-  const builtInComponentFiles = await listVueFiles(options.componentsDir);
   const componentSources = new Map<string, ProseComponentMetaSource>();
   const components: Record<string, ProseComponentMetaEntry> = {};
   const sourceHashes: Record<string, string> = {};
-
-  for (const componentPath of builtInComponentFiles) {
-    const manifestPath = normalizeComponentMetaPath(relative(options.layerRoot, componentPath));
-    componentSources.set(manifestPath, {
-      absolutePath: componentPath,
-      manifestPath,
-    });
-  }
 
   for (const component of options.additionalComponents || []) {
     componentSources.set(component.manifestPath, component);
