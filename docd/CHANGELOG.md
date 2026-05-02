@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.4
+
+### Patch Changes
+
+- [`8a839d0`](https://github.com/BayBreezy/docd/commit/8a839d0378a3e44bdb51648471086df94dd37191) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add optional label field to docs schema
+
 ## 0.1.3
 
 ### Patch Changes
