@@ -50,6 +50,7 @@ const baseSchema = z.object({
 
 const docsSchema = baseSchema.extend({
   label: z.string().optional(),
+  target: z.string().optional(),
   layout: z.string().default("docs").optional(),
 });
 
