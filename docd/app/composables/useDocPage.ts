@@ -36,7 +36,7 @@ export const useDocPage = async () => {
     ),
     useAsyncData(
       () => `navigation_docs`,
-      () => queryCollectionNavigation("docs" as keyof Collections),
+      () => queryCollectionNavigation("docs" as keyof Collections, ["label", "target"]),
       {
         watch: [() => route.path],
         transform: (data: ContentNavigationItem[]) =>
