@@ -37,7 +37,7 @@
               target="_blank"
               variant="outline"
               size="md"
-              class="transition-colors duration-300"
+              class="gap-1.5 transition-colors duration-300 [&>svg]:size-3.5"
             >
               <Icon
                 v-if="link?.icon"
