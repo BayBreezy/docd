@@ -12,7 +12,7 @@
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
     "@takumi-rs/core": "^1.1.2",
-    "nuxt-studio": "1.6.1"
+    "nuxt-studio": "1.7.0"
   },
   "devDependencies": {
     "nuxt": "^4.4.4",
