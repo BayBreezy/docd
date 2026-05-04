@@ -24,7 +24,19 @@ export default defineAppConfig({
           icon: "lucide:bug",
           label: "Report an issue",
           external: true,
-          href: `${repoBase}/issues/new`,
+          href: `${repoBase}/issues/new?template=bug_report.yml`,
+        },
+        {
+          icon: "lucide:lightbulb",
+          label: "Feature request",
+          external: true,
+          href: `${repoBase}/issues/new?template=feature_request.yml`,
+        },
+        {
+          icon: "lucide:coffee",
+          label: "Buy me coffee",
+          external: true,
+          href: "https://buymeacoffee.com/llehXIrI8g",
         },
       ],
       transition: {
