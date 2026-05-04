@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "bun run dev:prepare && nuxi dev --host",
+    "dev": "nuxi dev --host",
     "dev:prepare": "nuxi prepare",
     "generate": "nuxt generate",
     "preview": "nuxt preview"

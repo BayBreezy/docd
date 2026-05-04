@@ -60,7 +60,7 @@
     "nuxt-component-meta": "^0.17.2",
     "nuxt-gtag": "4.1.0",
     "nuxt-llms": "^0.2.0",
-    "nuxt-og-image": "^6.4.9",
+    "nuxt-og-image": "^6.4.11",
     "pkg-types": "^2.3.1",
     "reka-ui": "^2.9.6",
     "shiki": "^4.0.2",
@@ -71,8 +71,8 @@
     "ufo": "^1.6.4",
     "vaul-vue": "^0.4.1",
     "vue-sonner": "^2.0.9",
-    "yaml": "^2.8.3",
-    "zod": "^4.4.1"
+    "yaml": "^2.8.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
