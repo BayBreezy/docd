@@ -25,6 +25,14 @@
       </p>
 
       <div v-if="logoSvg" class="absolute bottom-7 left-7 size-10" v-html="logoSvg" />
+      <img
+        v-else-if="logoImgUrl"
+        class="absolute bottom-7 left-7"
+        :src="logoImgUrl"
+        width="40"
+        height="40"
+        style="object-fit: contain"
+      />
     </div>
   </div>
 </template>
@@ -38,8 +46,17 @@
 
   const { darkLogo, lightLogo } = useDocd();
   const logoPath = darkLogo.value || lightLogo.value;
+  const isSvg = logoPath?.toLowerCase().endsWith(".svg") ?? false;
 
-  const logoSvg = await fetchLogoSvg(logoPath);
+  const logoSvg = isSvg ? await fetchLogoSvg(logoPath) : "";
+  const logoImgUrl = !isSvg ? resolveLogoUrl(logoPath) : "";
+
+  function resolveLogoUrl(path?: string): string {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    const { url: siteUrl } = useSiteConfig();
+    return `${siteUrl}${path}`;
+  }
 
   function resizeSvg(svg: string, size: number): string {
     const s = String(size);

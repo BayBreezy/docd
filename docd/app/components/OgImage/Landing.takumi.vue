@@ -15,6 +15,14 @@
 
       <div class="flex flex-col items-center text-center">
         <div v-if="logoSvg" v-html="logoSvg" class="mb-5" />
+        <img
+          v-else-if="logoImgUrl"
+          class="mb-5"
+          :src="logoImgUrl"
+          width="48"
+          height="48"
+          style="object-fit: contain"
+        />
 
         <h1 v-if="title" class="mb-4 text-5xl leading-none font-bold tracking-tighter">
           {{ title }}
@@ -37,8 +45,17 @@
 
   const { darkLogo, lightLogo } = useDocd();
   const logoPath = darkLogo.value || lightLogo.value;
+  const isSvg = logoPath?.toLowerCase().endsWith(".svg") ?? false;
 
-  const logoSvg = await fetchLogoSvg(logoPath);
+  const logoSvg = isSvg ? await fetchLogoSvg(logoPath) : "";
+  const logoImgUrl = !isSvg ? resolveLogoUrl(logoPath) : "";
+
+  function resolveLogoUrl(path?: string): string {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    const { url: siteUrl } = useSiteConfig();
+    return `${siteUrl}${path}`;
+  }
 
   function resizeSvg(svg: string, size: number): string {
     const s = String(size);
