@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.7
+
+### Patch Changes
+
+- [`f199eba`](https://github.com/BayBreezy/docd/commit/f199ebaa6253df32888b37cc5a894ec298381398) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Ensure that images that are not svg are handled & displayed correctly within the OgImage templates.
+
 ## 0.1.6
 
 ### Patch Changes
