@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@baybreezy/file-extension-icon": "^0.0.4",
+    "@baybreezy/file-extension-icon": "^0.0.5",
     "@iconify-json/lucide": "^1.2.105",
     "@iconify-json/material-icon-theme": "^1.2.62",
     "@iconify-json/simple-icons": "^1.2.80",
