@@ -38,7 +38,7 @@
     "@commitlint/types": "^20.5.0",
     "@types/node": "^25.6.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.4",
     "nuxt": "^4.4.4",
     "nuxt-component-meta": "^0.17.2",
     "oxfmt": "^0.47.0",
