@@ -39,7 +39,7 @@
             >Pick a style and color for your components.</UiDrawerDescription
           >
         </UiDrawerHeader>
-        <DocsThemeCustomizerCore />
+        <DocsThemeCustomizerCore class="overflow-y-auto px-2" />
       </UiDrawerContent>
     </UiDrawer>
   </ClientOnly>
