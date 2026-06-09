@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@takumi-rs/core": "^1.1.2",
+    "@takumi-rs/core": "^1.7.0",
     "nuxt-studio": "1.7.0"
   },
   "devDependencies": {
-    "nuxt": "^4.4.5",
+    "nuxt": "^4.4.8",
     "typescript": "^6.0.3",
     "vue": "latest",
     "vue-router": "latest"
