@@ -291,6 +291,11 @@ html.light {
 .light select {
   color-scheme: light;
 }
+@media (prefers-color-scheme: dark) {
+  select {
+    background-color: var(--selection-foreground);
+  }
+}
 
 h1 > a,
 h2 > a,
