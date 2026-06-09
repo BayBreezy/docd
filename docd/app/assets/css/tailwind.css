@@ -282,6 +282,16 @@ html.light {
   color-scheme: light;
 }
 
+/* Chromium/Brave on Windows renders the native <select> dropdown popup as an
+   OS widget outside the DOM. color-scheme must be set directly on the element
+   (not just inherited from html) for the popup to adopt dark styling. */
+.dark select {
+  color-scheme: dark;
+}
+.light select {
+  color-scheme: light;
+}
+
 h1 > a,
 h2 > a,
 h3 > a,
