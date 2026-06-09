@@ -27,7 +27,7 @@ primaryCta:
   icon: "lucide:rocket"
 secondaryCta:
   label: View on GitHub
-  href: https://github.com/
+  href: https://github.com/BayBreezy/docd
   icon: "simple-icons:github"
 browserFrameUrl: https://docd.uithing.com
 description: Ship fast, flexible, and SEO-optimized documentation with beautiful
