@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.9
+
+### Patch Changes
+
+- [`27ce6b2`](https://github.com/BayBreezy/docd/commit/27ce6b27b4fb644984f96ddfb1e7547e8e1617e2) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Add dark mode background color for select elements
+
 ## 0.1.8
 
 ### Patch Changes
