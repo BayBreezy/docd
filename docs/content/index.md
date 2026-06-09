@@ -24,9 +24,11 @@ navLinks:
 primaryCta:
   label: Get started
   href: /getting-started/introduction
+  icon: "lucide:rocket"
 secondaryCta:
   label: View on GitHub
   href: https://github.com/
+  icon: "simple-icons:github"
 browserFrameUrl: https://docd.uithing.com
 description: Ship fast, flexible, and SEO-optimized documentation with beautiful
   design out of the box. Docd brings together the best of the Nuxt ecosystem.
