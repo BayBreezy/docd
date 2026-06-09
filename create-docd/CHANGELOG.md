@@ -1,5 +1,14 @@
 # create-docd
 
+## 0.0.4
+
+### Patch Changes
+
+- [`f69a755`](https://github.com/BayBreezy/docd/commit/f69a7551415a0059356e2ab6b2ada414bf4265f8) Thanks [@BayBreezy](https://github.com/BayBreezy)! - - Bump dependencies in the `create-docd` package.
+  - Add icons to documentation landing page CTA's
+  - Update CSS to include proper color schema for slect elements in Brave browser
+  - Add overflow to Theme customizer component.
+
 ## 0.0.3
 
 ### Patch Changes
