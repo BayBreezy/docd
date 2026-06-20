@@ -1,5 +1,11 @@
 # docd
 
+## 0.1.10
+
+### Patch Changes
+
+- [`a4ac32b`](https://github.com/BayBreezy/docd/commit/a4ac32bf07a97e3571a48114f33c8f24fa7a3715) Thanks [@BayBreezy](https://github.com/BayBreezy)! - Bumped dependencies
+
 ## 0.1.9
 
 ### Patch Changes
