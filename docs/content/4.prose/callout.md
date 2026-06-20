@@ -3,7 +3,7 @@ title: Callout
 description: Display important information with icons and variants for different message types.
 links:
   - title: Source Code
-    href: https://github.com/BayBreezy/docd/blob/main/docd/app/components/content/prose/ProseCallout.vue
+    href: https://github.com/BayBreezy/docd/blob/main/docd/app/components/content/prose/ProseCallout.global.vue
     icon: lucide:code-xml
 publishedAt: 2026-04-24
 modifiedAt: 2026-04-28
