@@ -41,7 +41,7 @@
     "lint-staged": "^17.0.8",
     "nuxt": "^4.4.8",
     "nuxt-component-meta": "^0.17.2",
-    "oxfmt": "^0.55.0",
+    "oxfmt": "^0.56.0",
     "oxlint": "^1.70.0",
     "oxlint-tsgolint": "^0.23.0",
     "tsx": "^4.22.4",
