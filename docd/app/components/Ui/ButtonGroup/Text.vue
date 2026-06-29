@@ -19,9 +19,7 @@
   });
 
   export type ButtonGroupTextProps = PrimitiveProps & {
-    /**
-     * Additional classes to apply to the button group text.
-     */
+    /** Additional classes to apply to the button group text. */
     class?: HTMLAttributes["class"];
   };
 </script>

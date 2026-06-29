@@ -17,7 +17,7 @@
   const props = withDefaults(
     defineProps<
       ScrollAreaThumbProps & {
-        /** Custom class(es) to add to the parent */
+        /** Custom class(es) to add to the parent. */
         class?: HTMLAttributes["class"];
         orientation?: "vertical" | "horizontal";
       }

@@ -23,15 +23,15 @@
 
   const props = defineProps<
     DropdownMenuSubTriggerProps & {
-      /**Custom class(es) to add to the element */
+      /** Custom class(es) to add to the element. */
       class?: HTMLAttributes["class"];
-      /** Wether an indentation should be added to the item or not */
+      /** Wether an indentation should be added to the item or not. */
       inset?: boolean;
-      /** The icon to display */
+      /** The icon to display. */
       icon?: string;
-      /** The title for the item */
+      /** The title for the item. */
       title?: string;
-      /** The trailing icon to display */
+      /** The trailing icon to display. */
       trailingIcon?: string;
     }
   >();

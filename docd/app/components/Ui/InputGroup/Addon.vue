@@ -39,12 +39,11 @@
   export type InputGroupAddonVariants = PrimitiveProps & {
     /**
      * Alignment of the addon within the input group.
+     *
      * @default "inline-start"
      */
     align?: VariantProps<typeof inputGroupAddonVariants>["align"];
-    /**
-     * Additional classes to apply to the input group addon container.
-     */
+    /** Additional classes to apply to the input group addon container. */
     class?: HTMLAttributes["class"];
   };
 </script>

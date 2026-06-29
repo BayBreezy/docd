@@ -16,11 +16,11 @@
 
   const props = defineProps<
     DropdownMenuLabelProps & {
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
-      /** Whether to inset the content */
+      /** Whether to inset the content. */
       inset?: boolean;
-      /** The label text to display */
+      /** The label text to display. */
       label?: string;
     }
   >();

@@ -19,9 +19,7 @@
   });
 
   export type InputGroupText = PrimitiveProps & {
-    /**
-     * Additional classes to apply to the input group addon container.
-     */
+    /** Additional classes to apply to the input group addon container. */
     class?: HTMLAttributes["class"];
   };
 </script>

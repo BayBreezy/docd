@@ -26,9 +26,9 @@
   const props = withDefaults(
     defineProps<
       DropdownMenuContentProps & {
-        /** Custom class(es) to add to the parent */
+        /** Custom class(es) to add to the parent. */
         class?: HTMLAttributes["class"];
-        /** Whether to render the content with a translucent surface */
+        /** Whether to render the content with a translucent surface. */
         translucent?: boolean;
       }
     >(),

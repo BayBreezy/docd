@@ -26,9 +26,9 @@
   const props = withDefaults(
     defineProps<
       ContextMenuSubContentProps & {
-        /**Custom class(es) to add to the element */
+        /** Custom class(es) to add to the element. */
         class?: HTMLAttributes["class"];
-        /** Whether to render the content with a translucent surface */
+        /** Whether to render the content with a translucent surface. */
         translucent?: boolean;
       }
     >(),

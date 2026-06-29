@@ -15,25 +15,15 @@
 
   const props = withDefaults(
     defineProps<{
-      /**
-       * Custom class(es) to add to the icon container.
-       */
+      /** Custom class(es) to add to the icon container. */
       class?: HTMLAttributes["class"];
-      /**
-       * The icon to display.
-       */
+      /** The icon to display. */
       icon?: string;
-      /**
-       * The color variant of the icon.
-       */
+      /** The color variant of the icon. */
       color?: VariantProps<typeof styles>["color"];
-      /**
-       * The theme variant of the icon.
-       */
+      /** The theme variant of the icon. */
       theme?: VariantProps<typeof styles>["theme"];
-      /**
-       * The size variant of the icon.
-       */
+      /** The size variant of the icon. */
       size?: VariantProps<typeof styles>["size"];
     }>(),
     {

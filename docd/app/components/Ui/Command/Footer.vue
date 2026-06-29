@@ -27,7 +27,7 @@
   import { Primitive, type PrimitiveProps } from "reka-ui";
   import { normalizeClass, type HTMLAttributes } from "vue";
   export type CommandFooterProps = PrimitiveProps & {
-    /** Custom class(es) to add to the element */
+    /** Custom class(es) to add to the element. */
     class?: HTMLAttributes["class"];
   };
   const styles = tv({

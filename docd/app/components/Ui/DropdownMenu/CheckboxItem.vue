@@ -24,11 +24,11 @@
 
   const props = defineProps<
     DropdownMenuCheckboxItemProps & {
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
-      /** The shortcut text to display */
+      /** The shortcut text to display. */
       shortcut?: string;
-      /** The title text to display */
+      /** The title text to display. */
       title?: string;
     }
   >();

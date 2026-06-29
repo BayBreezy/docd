@@ -35,9 +35,7 @@
 <script lang="ts" setup>
   const props = defineProps<
     PrimitiveProps & {
-      /**
-       * Additional classes to apply to the input group container.
-       */
+      /** Additional classes to apply to the input group container. */
       class?: HTMLAttributes["class"];
     }
   >();

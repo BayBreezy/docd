@@ -30,32 +30,20 @@
 
   export type AvatarProps = AvatarRootProps &
     Partial<AvatarImageProps> & {
-      /**
-       * Class to add to the root element
-       */
+      /** Class to add to the root element. */
       class?: any;
-      /**
-       * Class to pass to the image element
-       */
+      /** Class to pass to the image element. */
       imageClass?: any;
-      /**
-       * Class to pass to the fallback element
-       */
+      /** Class to pass to the fallback element. */
       fallbackClass?: any;
-      /**
-       * The `alt` attribute value for the image
-       */
+      /** The `alt` attribute value for the image. */
       alt?: string;
-      /**
-       * The fallback text to display when the image fails to load
-       */
+      /** The fallback text to display when the image fails to load. */
       fallback?: string;
-      /**
-       * Useful for delaying rendering so it only appears for those with slower connections.
-       */
+      /** Useful for delaying rendering so it only appears for those with slower connections. */
       delayMs?: number;
       /**
-       * The size of the avatar
+       * The size of the avatar.
        *
        * @default "default"
        */

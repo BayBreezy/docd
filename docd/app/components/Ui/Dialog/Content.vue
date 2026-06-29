@@ -46,19 +46,19 @@
   defineOptions({ inheritAttrs: false });
   const props = defineProps<
     DialogContentProps & {
-      /** Icon to display in the close button */
+      /** Icon to display in the close button. */
       icon?: string;
-      /** Title text */
+      /** Title text. */
       title?: string;
-      /** Description text */
+      /** Description text. */
       description?: string;
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
-      /** Whether to hide the close button */
+      /** Whether to hide the close button. */
       hideClose?: boolean;
-      /** Where to render the dialog */
+      /** Where to render the dialog. */
       to?: string | HTMLElement;
-      /** Whether to render the content with a translucent surface */
+      /** Whether to render the content with a translucent surface. */
       translucent?: boolean;
     }
   >();

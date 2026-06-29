@@ -29,7 +29,7 @@
 
   const props = defineProps<
     ListboxGroupProps & {
-      /** Custom class(es) to add to the element */
+      /** Custom class(es) to add to the element. */
       class?: HTMLAttributes["class"];
       heading?: string;
     }

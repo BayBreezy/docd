@@ -60,17 +60,17 @@
 
   const props = defineProps<
     NuxtLinkProps & {
-      /** Any additional class that should be added to the badge */
+      /** Any additional class that should be added to the badge. */
       class?: HTMLAttributes["class"];
-      /** The variant of the badge */
+      /** The variant of the badge. */
       variant?: BadgeProps["variant"];
-      /** The size of the badge */
+      /** The size of the badge. */
       size?: BadgeProps["size"];
-      /** The action to perform when the badge is clicked */
+      /** The action to perform when the badge is clicked. */
       onClick?: () => void;
-      /** Should the badge be disabled or not */
+      /** Should the badge be disabled or not. */
       disabled?: boolean;
-      /** The element to render the badge as */
+      /** The element to render the badge as. */
       tag?: string;
     }
   >();

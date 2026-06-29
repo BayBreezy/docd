@@ -68,21 +68,21 @@
 <script setup lang="ts">
   const props = withDefaults(
     defineProps<{
-      /** The text shown in the badge addon pill */
+      /** The text shown in the badge addon pill. */
       addonText: string;
-      /** Size of the badge group */
+      /** Size of the badge group. */
       size?: BadgeGroupSize;
-      /** Color variant — only applies to the light theme */
+      /** Color variant — only applies to the light theme. */
       color?: BadgeGroupColor;
       /** Visual theme: pill-style (light) or card-style with dot (modern) */
       theme?: BadgeGroupTheme;
-      /** Whether the badge addon appears before or after the main text */
+      /** Whether the badge addon appears before or after the main text. */
       align?: BadgeGroupAlign;
       /** Icon name passed to `<Icon>`. Set to `false` to hide the icon. */
       icon?: string | false;
-      /** Animate the modern theme dot with a ping pulse */
+      /** Animate the modern theme dot with a ping pulse. */
       pulse?: boolean;
-      /** Additional classes applied to the root element */
+      /** Additional classes applied to the root element. */
       class?: HTMLAttributes["class"];
     }>(),
     {

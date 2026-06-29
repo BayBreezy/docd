@@ -65,22 +65,16 @@
     link?: string;
     disabled?: boolean;
     slot?: string;
-    click?: () => void;
+    click?: Function;
   }
 
   const props = withDefaults(
     defineProps<{
-      /**
-       * The items to display in the breadcrumbs.
-       */
+      /** The items to display in the breadcrumbs. */
       items?: BreadcrumbItem[];
-      /**
-       * The separator to use between each breadcrumb.
-       */
+      /** The separator to use between each breadcrumb. */
       separator?: string;
-      /**
-       * Custom class(es) to add to the parent element.
-       */
+      /** Custom class(es) to add to the parent element. */
       class?: HTMLAttributes["class"];
     }>(),
     {
@@ -91,6 +85,7 @@
 
   /**
    * Detects if the current item is not the last item in the breadcrumbs.
+   *
    * @param index - The index of the current item.
    */
   const isNotLastItem = (index: number) => {

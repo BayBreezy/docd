@@ -32,7 +32,7 @@
   const props = withDefaults(
     defineProps<
       ListboxFilterProps & {
-        /** Custom class(es) to add to the element */
+        /** Custom class(es) to add to the element. */
         class?: HTMLAttributes["class"];
         /**
          * The name of the icon to display for the search input.

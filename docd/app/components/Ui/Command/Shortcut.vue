@@ -16,9 +16,9 @@
 
   const props = defineProps<
     PrimitiveProps & {
-      /** Custom class(es) to add to the element */
+      /** Custom class(es) to add to the element. */
       class?: HTMLAttributes["class"];
-      /** The shortcut text to render */
+      /** The shortcut text to render. */
       shortcut?: any;
     }
   >();

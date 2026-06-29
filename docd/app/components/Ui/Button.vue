@@ -9,6 +9,7 @@
         size: size,
         class: normalizeClass(props.class) || undefined,
         effect: props.effect,
+        skeuomorphic: props.skeuomorphic,
       })
     "
     :disabled="disabled || loading"
@@ -47,9 +48,7 @@
 
   import type { NuxtLinkProps } from "#app/components";
 
-  /**
-   * Exported button styles that can be used by other components
-   */
+  /** Exported button styles that can be used by other components. */
   export const buttonStyles = tv({
     base: "group inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
     variants: {
@@ -62,6 +61,8 @@
         secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        gradient:
+          "bg-[linear-gradient(314deg,color-mix(in_oklch,var(--primary),white_33%),var(--primary))] text-primary-foreground shadow-xs transition-[filter] hover:brightness-110",
       },
       effect: {
         expandIcon: "group relative gap-0",
@@ -97,6 +98,9 @@
       hasIcon: {
         false: "gap-2",
       },
+      skeuomorphic: {
+        true: "[box-shadow:0px_0px_0px_1px_rgba(0,0,0,0.18)_inset,0px_-2px_0px_0px_rgba(0,0,0,0.05)_inset,var(--shadow-xs)]",
+      },
     },
     defaultVariants: {
       variant: "default",
@@ -105,34 +109,34 @@
   });
   export type ButtonVariants = VariantProps<typeof buttonStyles>;
   export type ButtonProps = NuxtLinkProps & {
-    /** The type for the button */
+    /** The type for the button. */
     type?: "button" | "submit" | "reset";
-    /** Whether the button is disabled */
+    /** Whether the button is disabled. */
     disabled?: boolean;
-    /** Whether the button is loading */
+    /** Whether the button is loading. */
     loading?: boolean;
-    /** The action to perform when the button is clicked */
+    /** The action to perform when the button is clicked. */
     onClick?: any;
-    /** The element to render the button as */
+    /** The element to render the button as. */
     as?: string;
-    /** Custom class(es) to add to parent element */
+    /** Custom class(es) to add to parent element. */
     class?: HtmlHTMLAttributes["class"];
-    /** The variant of the button */
+    /** The variant of the button. */
     variant?: ButtonVariants["variant"];
-    /** The size of the button */
+    /** The size of the button. */
     size?: ButtonVariants["size"];
-    /**
-     * The effect to apply to the button.
-     */
+    /** The effect to apply to the button. */
     effect?: ButtonVariants["effect"];
-    /** The text to display in the button */
+    /** The text to display in the button. */
     text?: string;
     /** Should the icon be displayed on the `left` or the `right`? */
     iconPlacement?: "left" | "right";
-    /** The icon to display in the button */
+    /** The icon to display in the button. */
     icon?: string;
-    /** The icon to display when the button is loading */
+    /** The icon to display when the button is loading. */
     loadingIcon?: string;
+    /** Applies an inset skeuomorphic shadow for a tactile, raised appearance. */
+    skeuomorphic?: boolean;
   };
 </script>
 
@@ -163,7 +167,8 @@
       "loading",
       "disabled",
       "loadingIcon",
-      "effect"
+      "effect",
+      "skeuomorphic"
     )
   );
 </script>

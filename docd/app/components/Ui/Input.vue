@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/html-self-closing -->
 <template>
   <input
     v-bind="props"
@@ -14,27 +15,27 @@
   import type { HTMLAttributes, InputHTMLAttributes } from "vue";
 
   export type InputProps = {
-    /** Additional classes to add to the input */
+    /** Additional classes to add to the input. */
     class?: HTMLAttributes["class"];
-    /** The id of the input */
+    /** The id of the input. */
     id?: string;
-    /** The name of the input */
+    /** The name of the input. */
     name?: string;
-    /** The placeholder of the input */
+    /** The placeholder of the input. */
     placeholder?: string;
-    /** Whether the input is disabled */
+    /** Whether the input is disabled. */
     disabled?: boolean;
-    /** Whether the input is required */
+    /** Whether the input is required. */
     required?: boolean;
-    /** The type of the input */
+    /** The type of the input. */
     type?: InputHTMLAttributes["type"];
-    /** The value of the input */
+    /** The value of the input. */
     modelValue?: any;
-    /** The maximum length of the input */
+    /** The maximum length of the input. */
     maxlength?: number;
-    /** The `RegExp` pattern of the input */
+    /** The `RegExp` pattern of the input. */
     pattern?: string;
-    /** When `true`, the input will be focused when mounted */
+    /** When `true`, the input will be focused when mounted. */
     autofocus?: boolean;
   };
 </script>

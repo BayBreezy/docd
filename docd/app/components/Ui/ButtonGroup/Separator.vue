@@ -18,13 +18,9 @@
   });
 
   export type ButtonGroupSeparatorProps = {
-    /**
-     * The orientation of the separator.
-     */
+    /** The orientation of the separator. */
     orientation?: "horizontal" | "vertical";
-    /**
-     * Additional classes to apply to the button group text.
-     */
+    /** Additional classes to apply to the button group text. */
     class?: HTMLAttributes["class"];
   };
 </script>

@@ -17,11 +17,11 @@
 
   const props = defineProps<
     ContextMenuLabelProps & {
-      /**Custom class(es) to add to the element */
+      /** Custom class(es) to add to the element. */
       class?: HTMLAttributes["class"];
-      /** Wether an indentation should be added to the item or not */
+      /** Wether an indentation should be added to the item or not. */
       inset?: boolean;
-      /** The label for the item */
+      /** The label for the item. */
       label?: string;
     }
   >();

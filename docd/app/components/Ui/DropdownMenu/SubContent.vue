@@ -25,11 +25,11 @@
   const props = withDefaults(
     defineProps<
       DropdownMenuSubContentProps & {
-        /** Custom class(es) to add to the parent */
+        /** Custom class(es) to add to the parent. */
         class?: HTMLAttributes["class"];
-        /** The element to render the portal into */
+        /** The element to render the portal into. */
         to?: string | HTMLElement;
-        /** Whether to render the content with a translucent surface */
+        /** Whether to render the content with a translucent surface. */
         translucent?: boolean;
       }
     >(),

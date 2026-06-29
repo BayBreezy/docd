@@ -18,7 +18,7 @@
 
   const props = defineProps<
     SeparatorProps & {
-      /** Custom class(es) to add to the element */
+      /** Custom class(es) to add to the element. */
       class?: HTMLAttributes["class"];
     }
   >();

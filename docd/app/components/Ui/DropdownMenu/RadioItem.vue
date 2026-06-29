@@ -22,11 +22,11 @@
 
   const props = defineProps<
     DropdownMenuRadioItemProps & {
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
-      /** The icon to display */
+      /** The icon to display. */
       icon?: string;
-      /** The title text to display */
+      /** The title text to display. */
       title?: string;
     }
   >();

@@ -16,9 +16,9 @@
 
   const props = defineProps<
     DialogDescriptionProps & {
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
-      /** The description text */
+      /** The description text. */
       description?: string;
     }
   >();

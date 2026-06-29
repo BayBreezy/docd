@@ -20,11 +20,9 @@
   import type { HTMLAttributes } from "vue";
 
   export type LabelProps = LP & {
-    /** Custom class(es) to add to the label */
+    /** Custom class(es) to add to the label. */
     class?: HTMLAttributes["class"];
-    /**
-     * Optional hint text to display alongside the label.
-     */
+    /** Optional hint text to display alongside the label. */
     hint?: string;
   };
 </script>

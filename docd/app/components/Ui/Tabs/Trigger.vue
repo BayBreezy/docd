@@ -17,9 +17,9 @@
   const props = withDefaults(
     defineProps<
       TabsTriggerProps & {
-        /** Custom class(es) to add to parent element */
+        /** Custom class(es) to add to parent element. */
         class?: HTMLAttributes["class"];
-        /** Whether the trigger should be pill-shaped */
+        /** Whether the trigger should be pill-shaped. */
         pill?: boolean;
       }
     >(),

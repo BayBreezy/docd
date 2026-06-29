@@ -31,31 +31,25 @@
   import type { HTMLAttributes } from "vue";
 
   const props = defineProps<{
-    /**
-     * Custom class for the divider
-     */
+    /** Custom class for the divider. */
     class?: HTMLAttributes["class"];
     /**
-     * The type of the divider
+     * The type of the divider.
+     *
      * @default "solid"
      */
     type?: VariantProps<typeof style>["type"];
     /**
-     * The orientation of the divider
+     * The orientation of the divider.
+     *
      * @default "horizontal"
      */
     orientation?: VariantProps<typeof style>["orientation"];
-    /**
-     * The icon to display in the divider
-     */
+    /** The icon to display in the divider. */
     icon?: string;
-    /**
-     * The label to display in the divider
-     */
+    /** The label to display in the divider. */
     label?: string;
-    /**
-     * The avatar to display in the divider
-     */
+    /** The avatar to display in the divider. */
     avatar?: string;
   }>();
 

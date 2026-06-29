@@ -16,7 +16,7 @@
 
   const props = defineProps<
     ScrollAreaViewportProps & {
-      /** Custom class(es) to add to the parent */
+      /** Custom class(es) to add to the parent. */
       class?: HTMLAttributes["class"];
     }
   >();

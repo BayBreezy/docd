@@ -16,7 +16,7 @@
 
   const props = defineProps<
     CollapsibleContentProps & {
-      /** Customer class(es) to add to the element */
+      /** Customer class(es) to add to the element. */
       class?: HTMLAttributes["class"];
     }
   >();

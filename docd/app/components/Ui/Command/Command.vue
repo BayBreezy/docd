@@ -61,13 +61,7 @@
   });
 
   function filterItems() {
-    const tokens = filterState.search
-      .trim()
-      .split(/\s+/)
-      .map((token) => token.trim())
-      .filter(Boolean);
-
-    if (!tokens.length) {
+    if (!filterState.search) {
       filterState.filtered.count = allItems.value.size;
       // Do nothing, each item will know to show itself because search is empty
       return;
@@ -79,17 +73,9 @@
 
     // Check which items should be included
     for (const [id, value] of allItems.value) {
-      let score = 0;
-      for (const token of tokens) {
-        if (!contains(value, token)) {
-          score = 0;
-          break;
-        }
-        score += 1;
-      }
-
-      filterState.filtered.items.set(id, score);
-      if (score > 0) itemCount++;
+      const score = contains(value, filterState.search);
+      filterState.filtered.items.set(id, score ? 1 : 0);
+      if (score) itemCount++;
     }
 
     // Check which groups have at least 1 item shown

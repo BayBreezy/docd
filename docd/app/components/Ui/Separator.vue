@@ -13,9 +13,7 @@
   import type { HTMLAttributes } from "vue";
 
   export type UiSeparatorProps = SeparatorProps & {
-    /**
-     * Custom class(es) to add to the separator
-     */
+    /** Custom class(es) to add to the separator. */
     class?: HTMLAttributes["class"];
   };
 </script>

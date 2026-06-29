@@ -14,25 +14,25 @@
   import type { HTMLAttributes, TextareaHTMLAttributes } from "vue";
 
   export type TextareaProps = {
-    /** Additional classes to add to the textarea */
+    /** Additional classes to add to the textarea. */
     class?: HTMLAttributes["class"];
-    /** The name of the textarea */
+    /** The name of the textarea. */
     name?: TextareaHTMLAttributes["name"];
-    /** The id of the textarea */
+    /** The id of the textarea. */
     id?: TextareaHTMLAttributes["id"];
-    /** The placeholder of the textarea */
+    /** The placeholder of the textarea. */
     placeholder?: TextareaHTMLAttributes["placeholder"];
-    /** Whether the textarea is required */
+    /** Whether the textarea is required. */
     required?: boolean;
-    /** Whether the textarea is disabled */
+    /** Whether the textarea is disabled. */
     disabled?: boolean;
-    /** The number of rows to display */
+    /** The number of rows to display. */
     rows?: number;
-    /** The value of the textarea */
+    /** The value of the textarea. */
     modelValue?: string;
-    /** The maximum number of characters allowed */
+    /** The maximum number of characters allowed. */
     maxlength?: number;
-    /** The `RegExp` pattern of the textarea */
+    /** The `RegExp` pattern of the textarea. */
     pattern?: string;
     /** Whether the textarea should be focused when mounted. */
     autofocus?: boolean;
