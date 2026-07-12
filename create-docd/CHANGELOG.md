@@ -1,5 +1,11 @@
 # create-docd
 
+## 0.0.6
+
+### Patch Changes
+
+- 6c3a173: Bump deps
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # docd
 
+## 0.1.12
+
+### Patch Changes
+
+- 6c3a173: Bump deps
+  - Update `shadcn.css` file
+
 ## 0.1.11
 
 ### Patch Changes
