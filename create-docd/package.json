@@ -18,8 +18,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@clack/prompts": "^1.6.0",
-    "@nuxt/cli": "^3.36.0",
+    "@clack/prompts": "^1.7.0",
+    "@nuxt/cli": "^3.36.1",
     "picocolors": "^1.1.1"
   }
 }
