@@ -18,6 +18,7 @@ export default defineAppConfig({
           favicon: "/favicon.svg",
         },
       },
+      body: { maxWidth: "750px" },
       extraLinks: [
         { icon: "lucide:star", label: "Star on GitHub", external: true, href: repoBase },
         {

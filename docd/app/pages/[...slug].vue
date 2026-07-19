@@ -9,8 +9,9 @@
   >
     <div
       v-if="page"
-      class="container prose prose-base max-w-7xl min-w-0 py-5 dark:prose-invert prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h2:mt-6 prose-h2:border-b prose-h2:pb-3 first:prose-h2:mt-10 prose-a:text-primary prose-a:no-underline prose-a:hover:underline prose-a:hover:underline-offset-2 prose-pre:my-0 prose-pre:rounded-sm prose-pre:p-2 prose-pre:px-0 prose-pre:text-base"
+      class="container prose prose-base min-w-0 py-5 dark:prose-invert prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h2:mt-6 prose-h2:border-b prose-h2:pb-3 first:prose-h2:mt-10 prose-a:text-primary prose-a:no-underline prose-a:hover:underline prose-a:hover:underline-offset-2 prose-pre:my-0 prose-pre:rounded-sm prose-pre:p-2 prose-pre:px-0 prose-pre:text-base"
       :class="[isDashed ? 'prose-headings:border-dashed' : '']"
+      :style="{ maxWidth: maxWidth }"
     >
       <PageHeader />
       <ContentRenderer :value="page" />
@@ -28,7 +29,7 @@
   const route = useRoute();
 
   const { page, navigation, headline, breadcrumbs } = await useDocPage();
-  const { isDashed } = useDocd();
+  const { isDashed, maxWidth } = useDocd();
 
   if (!page.value) {
     throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true });

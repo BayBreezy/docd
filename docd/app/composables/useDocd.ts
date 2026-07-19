@@ -39,6 +39,12 @@ export function useDocd() {
   const hideSearch = computed(() => header.value.hideSearch ?? false);
 
   /* =====================================
+  =               Body.                  =
+  ===================================== */
+  const body = useUIConfig("body");
+  const maxWidth = computed(() => body.value.maxWidth ?? "1280px");
+
+  /* =====================================
   =               Logo                   =
   ===================================== */
   const logo = computed(() => header.value.logo);
@@ -107,5 +113,8 @@ export function useDocd() {
     // footer
     hideThemeCustomizer,
     hideLightDarkToggle,
+    // body
+    body,
+    maxWidth,
   };
 }

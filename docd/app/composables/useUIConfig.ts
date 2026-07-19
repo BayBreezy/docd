@@ -6,6 +6,9 @@ interface DocdUIMap {
     hideSearch?: boolean;
     logo?: DocLogoConfig;
   };
+  body: {
+    maxWidth?: `${number}px`;
+  };
   footer?: {
     hideThemeCustomizer?: boolean;
     hideLightDarkToggle?: boolean;
@@ -30,6 +33,7 @@ export function useUIConfig<K extends keyof DocdUIMap>(section: K): ComputedRef<
 
 const defaultValues: DocdUIMap = {
   header: {},
+  body: { maxWidth: "1280px" },
   toc: { title: "On this page", icon: "lucide:list" },
   borderType: "dashed",
   transition: { name: "fade", duration: 0.35, easing: "easeOut" },

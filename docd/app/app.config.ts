@@ -153,6 +153,14 @@ export type DocdConfig = {
       /** Logo configuration for the header. */
       logo?: DocLogoConfig;
     };
+    body?: {
+      /**
+       * Maximum width for the main content area.
+       *
+       * @default "1280px"
+       */
+      maxWidth?: `${number}px`;
+    };
     footer?: {
       /**
        * Whether to hide the theme customizer in the sidebar
