@@ -287,14 +287,14 @@ html.light {
    (not just inherited from html) for the popup to adopt dark styling. */
 .dark select {
   color-scheme: dark;
+  background-color: --alpha(var(--input) / 30%);
 }
 .light select {
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  select {
-    background-color: var(--selection-foreground);
-  }
+
+select {
+  background-color: transparent;
 }
 
 h1 > a,
