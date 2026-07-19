@@ -1,5 +1,6 @@
 <template>
   <ConfigProvider :use-id="useId">
+    <NuxtAnnouncer />
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator color="var(--primary)" />
     <NuxtLayout>
