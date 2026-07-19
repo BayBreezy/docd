@@ -1,5 +1,11 @@
 # docd
 
+## 0.3.1
+
+### Patch Changes
+
+- 541c6db: Fix native select's background color in different color modes.
+
 ## 0.3.0
 
 ### Minor Changes
