@@ -3,7 +3,7 @@
     class="w-full min-w-0 overflow-x-clip"
     :class="[isAnimating && 'pointer-events-none overflow-clip']"
   >
-    <AnimatePresence mode="wait" @exit-complete="isAnimating = false">
+    <AnimatePresence mode="wait">
       <Motion
         :key="$router.currentRoute.value.path"
         :initial="preset.initial"
@@ -20,13 +20,15 @@
 
 <script lang="ts" setup>
   const route = useRoute();
+  const activeRoute = computed(() => route.path);
   const { preset, animate, duration, easing } = useDocd();
 
   const isAnimating = ref(false);
-  watch(
-    () => route.path,
-    () => {
-      isAnimating.value = true;
-    }
-  );
+  watch(activeRoute, () => {
+    isAnimating.value = true;
+  });
+
+  useNuxtApp().hook("page:finish", () => {
+    isAnimating.value = false;
+  });
 </script>
