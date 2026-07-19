@@ -5,7 +5,7 @@
   >
     <AnimatePresence mode="wait" @exit-complete="isAnimating = false">
       <Motion
-        :key="route.path"
+        :key="$router.currentRoute.value.path"
         :initial="preset.initial"
         :animate="animate"
         :exit="preset.exit"
