@@ -60,6 +60,5 @@
 
 <script lang="ts" setup>
   const { navigation } = await useDocPage();
-  const { isDashed, github, hasGithub, hideSearch, hideLightDarkToggle, hideThemeCustomizer } =
-    useDocd();
+  const { isDashed, hasGithub, hideSearch, hideLightDarkToggle, hideThemeCustomizer } = useDocd();
 </script>
