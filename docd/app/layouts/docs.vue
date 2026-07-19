@@ -13,11 +13,11 @@
           <DocsSearchButton v-if="!hideSearch" />
         </div>
       </div>
-      <UiScrollArea
-        class="h-[calc(100dvh-calc(var(--header-height)*2))] flex-1 mask-[linear-gradient(to_bottom,transparent,white_12px,white_calc(100%-12px),transparent)] px-4"
+      <div
+        class="h-[calc(100dvh-calc(var(--header-height)*2))] flex-1 scroll-fade overflow-y-auto px-4"
       >
         <DocsNav v-if="navigation" :items="navigation" />
-      </UiScrollArea>
+      </div>
       <div
         class="mt-auto flex h-(--header-height) items-center justify-between gap-3 border-t px-2"
         :class="isDashed ? 'border-dashed' : ''"
