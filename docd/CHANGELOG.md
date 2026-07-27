@@ -1,5 +1,11 @@
 # docd
 
+## 0.3.2
+
+### Patch Changes
+
+- a97f4e0: Update dependencies
+
 ## 0.3.1
 
 ### Patch Changes
