@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "nuxt": "^4.5.1",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue": "latest",
     "vue-router": "latest"
   },
