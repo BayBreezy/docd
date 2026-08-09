@@ -41,9 +41,9 @@
     "lint-staged": "^17.2.0",
     "nuxt": "^4.5.1",
     "nuxt-component-meta": "^0.18.0",
-    "oxfmt": "^0.61.0",
+    "oxfmt": "^0.62.0",
     "oxlint": "^1.76.0",
-    "oxlint-tsgolint": "^0.25.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vue": "latest"
