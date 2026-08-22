@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@iconify-json/lucide": "^1.2.120",
-    "@iconify-json/material-icon-theme": "^1.2.69",
-    "@iconify-json/simple-icons": "^1.2.92",
-    "@takumi-rs/core": "^2.5.2",
+    "@iconify-json/lucide": "^1.2.125",
+    "@iconify-json/material-icon-theme": "^1.2.70",
+    "@iconify-json/simple-icons": "^1.2.93",
+    "@takumi-rs/core": "^2.10.0",
     "nuxt-studio": "1.7.0"
   },
   "devDependencies": {
-    "nuxt": "^4.5.1",
+    "nuxt": "^4.5.2",
     "typescript": "^6.0.3",
     "vue": "latest",
     "vue-router": "latest"

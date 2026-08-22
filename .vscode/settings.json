@@ -3,6 +3,7 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "npm.scriptRunner": "bun",
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "mdc.enableFormatting": true,
   "oxc.fmt.configPath": ".oxfmtrc.json",
