@@ -15,6 +15,7 @@ import {
   readGeneratedProseComponentMeta,
   resolveProseComponentPaths,
 } from "../utils/generate-prose-component-meta";
+import { rewritePackageManagerMarkdown } from "../utils/package-manager-markdown";
 
 const log = logger.withTag("Docd");
 
@@ -73,6 +74,12 @@ export default defineNuxtModule({
     }
 
     await regenerate();
+
+    nuxt.hook("content:file:beforeParse", (event) => {
+      if (typeof event.file.body === "string" && event.file.extension === ".md") {
+        event.file.body = rewritePackageManagerMarkdown(event.file.body);
+      }
+    });
 
     nuxt.hook("content:file:afterParse", async (event) => {
       const context = {

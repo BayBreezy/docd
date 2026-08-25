@@ -1,5 +1,11 @@
 <template>
-  <MDC v-if="loadedCode" :value="md" class="not-first:mt-5" />
+  <MDC
+    v-if="loadedCode"
+    :key="mdCacheKey"
+    :cache-key="mdCacheKey"
+    :value="md"
+    class="not-first:mt-5"
+  />
   <ProseCallout v-else variant="error" title="Code Snippet Error">
     Cannot load code: <code>{{ file || url }}</code>
   </ProseCallout>
@@ -79,6 +85,7 @@
   );
 
   const loadedCode = ref("");
+  const route = useRoute();
 
   /**
    * Import all files matching the glob patterns
@@ -172,6 +179,10 @@ ${loadedCode.value}
 ::
 `.trim();
   });
+
+  const mdCacheKey = computed(
+    () => `prose-code-snippet:${route.path}:${props.file ?? props.url ?? ""}`
+  );
 
   // Load code on mount
   await loadCode();

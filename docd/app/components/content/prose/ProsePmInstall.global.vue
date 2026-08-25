@@ -1,5 +1,12 @@
 <template>
-  <MDC v-if="md" unwrap="p" :value="md" class="not-first:mt-5" />
+  <MDC
+    v-if="md"
+    :key="mdCacheKey"
+    :cache-key="mdCacheKey"
+    unwrap="p"
+    :value="md"
+    class="not-first:mt-5"
+  />
 </template>
 
 <script setup lang="ts">
@@ -39,6 +46,7 @@
   );
 
   const { packageManagers } = usePm();
+  const route = useRoute();
 
   const md = computed(() => {
     const codeBlocks = packageManagers
@@ -57,4 +65,6 @@
 
     return `::prose-code-group${attributes ? `{${attributes}}` : ""}\n${codeBlocks}\n::`;
   });
+
+  const mdCacheKey = computed(() => `prose-pm-install:${route.path}:${props.name ?? ""}`);
 </script>
