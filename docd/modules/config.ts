@@ -30,6 +30,7 @@ export default defineNuxtModule({
         "vaul-vue",
         "@vue/devtools-core",
         "@vue/devtools-kit",
+        "nuxt-studio > slugify",
       ],
     });
 
