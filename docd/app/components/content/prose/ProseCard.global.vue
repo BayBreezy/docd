@@ -69,7 +69,14 @@
 </script>
 
 <script lang="ts" setup>
-  const props = withDefaults(defineProps<ProseCardProps>(), {});
+  const props = withDefaults(defineProps<ProseCardProps>(), {
+    noRel: undefined,
+    prefetch: undefined,
+    noPrefetch: undefined,
+    replace: undefined,
+    external: undefined,
+    custom: undefined,
+  });
 
   defineSlots<{
     /**

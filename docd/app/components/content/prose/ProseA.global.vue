@@ -2,13 +2,14 @@
   <NuxtLink
     data-slot="prose-a"
     v-bind="rest"
-    :class="proseAStyles({ class: normalizeClass(_class) || undefined })"
+    :class="proseAStyles({ class: normalizeClass(props.class) || undefined })"
   >
     <slot />
   </NuxtLink>
 </template>
 
 <script lang="ts">
+  import { reactiveOmit } from "@vueuse/core";
   import { normalizeClass } from "vue";
   import type { HTMLAttributes } from "vue";
 
@@ -27,5 +28,20 @@
 </script>
 
 <script setup lang="ts">
-  const { class: _class, ...rest } = defineProps<ProseAProps>();
+  const props = withDefaults(
+    defineProps<
+      ProseAProps & {
+        custom?: true | undefined;
+      }
+    >(),
+    {
+      noRel: undefined,
+      prefetch: undefined,
+      noPrefetch: undefined,
+      replace: undefined,
+      external: undefined,
+      custom: undefined,
+    }
+  );
+  const rest = reactiveOmit(props, "class");
 </script>

@@ -46,7 +46,7 @@
   import { normalizeClass } from "vue";
   import type { HtmlHTMLAttributes } from "vue";
 
-  import type { NuxtLinkProps } from "#app/components";
+  import type { NuxtLinkProps } from "#app";
 
   /** Exported button styles that can be used by other components. */
   export const buttonStyles = tv({
@@ -146,6 +146,12 @@
     loadingIcon: "line-md:loading-loop",
     iconPlacement: "left",
     loading: false,
+    noRel: undefined,
+    prefetch: undefined,
+    noPrefetch: undefined,
+    replace: undefined,
+    external: undefined,
+    custom: undefined,
   });
 
   const elementType = computed(() => {
