@@ -1,5 +1,11 @@
 # create-docd
 
+## 0.0.8
+
+### Patch Changes
+
+- f93cd28: Bumped dependencies
+
 ## 0.0.7
 
 ### Patch Changes
