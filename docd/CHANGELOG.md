@@ -1,5 +1,11 @@
 # docd
 
+## 0.3.4
+
+### Patch Changes
+
+- f93cd28: Bumped dependencies
+
 ## 0.3.3
 
 ### Patch Changes
