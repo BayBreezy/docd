@@ -19,6 +19,19 @@
   const props = defineProps<{
     /** The Mermaid diagram definition code */
     code?: string;
+    theme?:
+      | "base"
+      | "dark"
+      | "neo-dark"
+      | "default"
+      | "forest"
+      | "neutral"
+      | "neo"
+      | "redux"
+      | "redux-dark"
+      | "redux-color"
+      | "redux-dark-color"
+      | "null";
   }>();
 
   const mermaidContainer = useTemplateRef("mermaidContainer");
@@ -32,7 +45,9 @@
   const { $mermaidInstance, $mermaidInitConfig } = useNuxtApp();
   const slots = useSlots();
 
-  const mermaidTheme = computed(() => (colorMode.value === "dark" ? "dark" : "default"));
+  const mermaidTheme = computed(
+    () => props.theme ?? (colorMode.value === "dark" ? "dark" : "default")
+  );
   // Generate unique IDs
   const uniqueId = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
   /**
