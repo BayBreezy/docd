@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@iconify-json/lucide": "^1.2.131",
+    "@iconify-json/lucide": "^1.2.136",
     "@iconify-json/material-icon-theme": "^1.2.70",
-    "@iconify-json/simple-icons": "^1.2.95",
-    "@takumi-rs/core": "^2.13.7",
+    "@iconify-json/simple-icons": "^1.2.97",
+    "@takumi-rs/core": "^2.14.0",
     "nuxt-studio": "1.7.0"
   },
   "devDependencies": {
