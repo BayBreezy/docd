@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@iconify-json/lucide": "^1.2.136",
+    "@iconify-json/lucide": "^1.2.138",
     "@iconify-json/material-icon-theme": "^1.2.70",
-    "@iconify-json/simple-icons": "^1.2.97",
+    "@iconify-json/simple-icons": "^1.2.98",
     "@takumi-rs/core": "^2.14.0",
     "nuxt-studio": "1.7.0"
   },

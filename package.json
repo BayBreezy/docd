@@ -36,17 +36,20 @@
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@commitlint/types": "^21.2.3",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.4",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1",
+    "lint-staged": "^17.6.0",
     "nuxt": "^4.5.2",
     "nuxt-component-meta": "^0.18.0",
-    "oxfmt": "^0.70.0",
-    "oxlint": "^1.85.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
     "oxlint-tsgolint": "^0.25.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "vue": "latest"
+  },
+  "overrides": {
+    "mdast-util-to-markdown": "2.1.2"
   },
   "lint-staged": {
     "*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,vue}": [
