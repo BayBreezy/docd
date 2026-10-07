@@ -52,7 +52,7 @@
   addPrerenderPath(`/raw${route.path}.md`);
 
   defineOgImage("Docs.takumi", {
-    title: title?.slice(0, 60),
+    title: formatOgTitle(title),
     description: formatOgDescription(title, description),
     headline: headline.value,
   });

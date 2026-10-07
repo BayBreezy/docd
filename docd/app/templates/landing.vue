@@ -30,7 +30,7 @@
   useSeo({ title, description, type: "website" });
 
   defineOgImage("Landing", {
-    title: title?.slice(0, 60),
+    title: formatOgTitle(title),
     description: formatOgDescription(title, description),
   });
 </script>
