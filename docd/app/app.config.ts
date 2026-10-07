@@ -251,5 +251,28 @@ declare module "@nuxt/schema" {
      * Configuration for Docd, the documentation layer built with [UI Thing](https://uithing.com).
      */
     docd?: DocdConfig;
+    /**
+     * Site-wide SEO defaults. Pages override the title and description with their own frontmatter.
+     */
+    seo?: {
+      /**
+       * Template for page titles. Use `%s` as the page title placeholder.
+       *
+       * @default "%s - <site name>"
+       */
+      titleTemplate?: string;
+      /**
+       * Default site title, used when a page has none.
+       *
+       * @default site name (inferred from package.json or Git info)
+       */
+      title?: string;
+      /**
+       * Default site description, used when a page has none.
+       *
+       * @default package.json description
+       */
+      description?: string;
+    };
   }
 }

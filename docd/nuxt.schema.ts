@@ -278,7 +278,8 @@ export default defineNuxtSchema({
         titleTemplate: field({
           type: "string",
           title: "Title Template",
-          description: "Template for page titles. Use %s as the page title placeholder.",
+          description:
+            'Template for page titles. Use %s as the page title placeholder. Defaults to "%s - <site name>".',
           icon: "i-lucide-type",
           default: "%s",
         }),
