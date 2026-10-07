@@ -13,11 +13,7 @@
 
   const route = useRoute();
 
-  const { data: page } = await useAsyncData<LandingPage | null>(
-    docPageKey("landing", route.path),
-    () => fetchDocPage("landing", route.path) as Promise<LandingPage | null>,
-    { getCachedData: getSharedCachedData }
-  );
+  const { data: page } = await useDocPageData<LandingPage>("landing");
 
   if (!page.value) {
     throw createError({ status: 404, statusText: "Page not found", fatal: true });

@@ -4,17 +4,32 @@ import { kebabCase } from "lodash-es";
 
 export const useSearchModal = () => useState("docSearchModal", () => false);
 
+/**
+ * Loads the page for the current route. Every caller goes through here so calls sharing a key
+ * also share options, which Nuxt requires, and so the data is reused instead of queried again.
+ *
+ * The landing collection only holds the home page, so it always loads `/` and never follows the
+ * route. Otherwise a component that stays mounted while you navigate (like the search dialog)
+ * would refresh the shared `landing` entry with another page's path and store `null` in it.
+ */
+export const useDocPageData = <T = PageCollectionItemBase>(collection: "docs" | "landing") => {
+  const route = useRoute();
+  const isLanding = collection === "landing";
+
+  return useAsyncData<T | null>(
+    docPageKey(collection, route.path),
+    () => fetchDocPage(collection, isLanding ? "/" : route.path) as Promise<T | null>,
+    { watch: isLanding ? [] : [() => route.path], getCachedData: getSharedCachedData }
+  );
+};
+
 export const useDocPage = async () => {
   const route = useRoute();
   const isLandingRoute = route.path === "/";
   const pageCollection = isLandingRoute ? "landing" : "docs";
 
   const [{ data: page }, { data: surround }, { data: navigation }] = await Promise.all([
-    useAsyncData<PageCollectionItemBase | null>(
-      docPageKey(pageCollection, route.path),
-      () => fetchDocPage(pageCollection, route.path),
-      { watch: [() => route.path], getCachedData: getSharedCachedData }
-    ),
+    useDocPageData(pageCollection),
     useAsyncData(
       `${kebabCase(route.path) || "root"}-surround`,
       () => {
