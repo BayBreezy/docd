@@ -11,8 +11,8 @@
         <p class="text-center">
           {{
             copied
-              ? "Markdown link copied to clipboard!"
-              : "Copy the markdown link for this page to your clipboard."
+              ? "Page copied to clipboard as Markdown!"
+              : "Copy this page to your clipboard as Markdown."
           }}
         </p>
       </UiTooltipContent>
@@ -61,20 +61,24 @@
 </template>
 
 <script lang="ts" setup>
+  import { joinURL } from "ufo";
+
   const route = useRoute();
   const appBaseURL = useRuntimeConfig().app?.baseURL || "/";
 
   const { copy, copied } = useClipboard();
-  const markdownLink = computed(() => `${window?.location?.origin}/raw${route.path}.md`);
-  const mcpServerUrl = computed(() => `${window?.location?.origin}${appBaseURL}mcp`);
+  const origin = useRequestURL().origin;
+  const rawPath = computed(() => `/raw${route.path}.md`);
+  const markdownLink = computed(() => `${origin}${joinURL(appBaseURL, rawPath.value)}`);
+  const mcpServerUrl = computed(() => `${origin}${joinURL(appBaseURL, "mcp")}`);
 
   const copyPage = async () => {
     try {
-      const response = await $fetch<string>(`/raw/${route.path}.md`);
+      const response = await $fetch<string>(rawPath.value);
       if (response) {
         copy(response);
-        useSonner.success("Markdown Link Copied", {
-          description: "The markdown link for this page has been copied to your clipboard.",
+        useSonner.success("Page Copied", {
+          description: "The markdown for this page has been copied to your clipboard.",
         });
       }
     } catch {
@@ -84,7 +88,7 @@
     }
   };
 
-  const items = [
+  const items = computed(() => [
     {
       label: "Copy Markdown Link",
       icon: "lucide:link",
@@ -106,7 +110,7 @@
     {
       label: "View Markdown Page",
       icon: "simple-icons:markdown",
-      to: `/raw${route.path}.md`,
+      to: rawPath.value,
     },
     {
       label: "Open in ChatGPT",
@@ -134,5 +138,5 @@
       icon: "lucide:bot",
       to: `/llms-full.txt`,
     },
-  ];
+  ]);
 </script>
