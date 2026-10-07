@@ -3,6 +3,7 @@ import { defu } from "defu";
 
 import { getGitBranch, getGitEnv, getLocalGitInfo } from "../utils/git";
 import { getPackageJsonMetadata, resolveSiteURL } from "../utils/meta";
+import { LAYER_OPTIMIZE_DEPS } from "../utils/optimize-deps";
 
 export default defineNuxtModule({
   meta: {
@@ -30,12 +31,7 @@ export default defineNuxtModule({
 
     nuxt.options.vite.optimizeDeps = defu(nuxt.options.vite.optimizeDeps, {
       include: [
-        "mermaid",
-        "lodash-es",
-        "tailwind-variants",
-        "@baybreezy/file-extension-icon",
-        "@iconify/utils",
-        "vaul-vue",
+        ...LAYER_OPTIMIZE_DEPS,
         "@vue/devtools-core",
         "@vue/devtools-kit",
         "nuxt-studio > slugify",

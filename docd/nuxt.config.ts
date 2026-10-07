@@ -58,6 +58,8 @@ export default defineNuxtConfig({
     resolver.resolve("./modules/prose-component-meta"),
     resolver.resolve("./modules/skills"),
     resolver.resolve("./modules/markdown-rewrite"),
+    // Keep last: it rewrites optimizeDeps entries that the modules above add
+    resolver.resolve("./modules/optimize-deps"),
   ],
 
   mdc: {
