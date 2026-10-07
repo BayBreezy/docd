@@ -22,6 +22,15 @@ export function inferSiteURL() {
 }
 
 /**
+ * Resolves the site URL, preferring an explicitly configured `site.url` over the inferred one.
+ */
+export function resolveSiteURL(site?: unknown) {
+  const configured =
+    typeof site === "object" && site !== null && "url" in site ? site.url : undefined;
+  return (typeof configured === "string" && configured) || inferSiteURL();
+}
+
+/**
  * Reads the package.json file from the specified directory and extracts metadata such as `name` and `description`.
  */
 export async function getPackageJsonMetadata(dir: string) {

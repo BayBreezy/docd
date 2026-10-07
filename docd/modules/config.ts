@@ -2,7 +2,7 @@ import { defineNuxtModule } from "@nuxt/kit";
 import { defu } from "defu";
 
 import { getGitBranch, getGitEnv, getLocalGitInfo } from "../utils/git";
-import { getPackageJsonMetadata, inferSiteURL } from "../utils/meta";
+import { getPackageJsonMetadata, resolveSiteURL } from "../utils/meta";
 
 export default defineNuxtModule({
   meta: {
@@ -11,7 +11,7 @@ export default defineNuxtModule({
 
   async setup(_options, nuxt) {
     const dir = nuxt.options.rootDir;
-    const url = inferSiteURL();
+    const url = resolveSiteURL(nuxt.options.site);
     const meta = await getPackageJsonMetadata(dir);
     const gitInfo = (await getLocalGitInfo(dir)) || getGitEnv();
     const siteName =
