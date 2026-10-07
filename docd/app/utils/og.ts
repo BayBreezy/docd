@@ -5,15 +5,11 @@ const OG_BUDGET = 150;
 
 const OG_TITLE_MAX = 60;
 
-// Nitro never prerenders URLs containing `..`, and zero-runtime OG images only exist
-// when prerendered, so dot runs in the title/description would skip the image entirely.
-const withoutDotRuns = (text: string) => text.replace(/\.{2,}/g, "…").replace(/\.+$/, "");
-
 /**
- * Truncates the title for the OG image and strips dot runs that break prerendering.
+ * Truncates the title for the OG image.
  */
 export function formatOgTitle(title: string | undefined): string | undefined {
-  return title ? withoutDotRuns(title.slice(0, OG_TITLE_MAX)) : undefined;
+  return title?.slice(0, OG_TITLE_MAX);
 }
 
 /**
@@ -30,10 +26,9 @@ export function formatOgDescription(
   const maxLen = OG_BUDGET - titleLen;
   if (maxLen <= 0) return undefined;
 
-  const cleaned = description.replace(/,/g, "");
-  if (cleaned.length <= maxLen) return withoutDotRuns(cleaned);
+  if (description.length <= maxLen) return description;
 
-  const truncated = cleaned.slice(0, maxLen);
+  const truncated = description.slice(0, maxLen);
   const lastDot = truncated.lastIndexOf(".");
-  return withoutDotRuns(lastDot > 0 ? truncated.slice(0, lastDot) : truncated);
+  return lastDot > 0 ? truncated.slice(0, lastDot + 1) : truncated;
 }
