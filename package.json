@@ -58,7 +58,7 @@
     ],
     "*.{json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "bun@1.4.0",
+  "packageManager": "bun@1.4.2",
   "trustedDependencies": [
     "@morev/vue-transitions",
     "@parcel/watcher",
