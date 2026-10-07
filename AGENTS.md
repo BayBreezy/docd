@@ -42,7 +42,7 @@ Docd is a Nuxt documentation layer built with Nuxt Layers. The docs UI is built 
 - In Nuxt 4, the consuming app config path is `app/app.config.ts`.
 - For the local docs app, the effective file is `docs/app/app.config.ts`.
 - Root-level `docs/app.config.ts` is not the path to use.
-- Layer defaults are merged in `docd/modules/config.ts` with `lodash-es/defaultsDeep`.
+- Layer defaults are merged in `docd/modules/config.ts` with `defu` (from the `defu` package).
 - The goal is normal Nuxt app-config precedence:
   - consuming app config wins
   - layer app config provides defaults
