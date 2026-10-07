@@ -201,9 +201,17 @@
     return cleaned.length > 160 ? `${cleaned.slice(0, 157)}...` : cleaned;
   }
 
-  const { meta_k } = useMagicKeys();
+  const { meta_k, ctrl_k } = useMagicKeys({
+    passive: false,
+    onEventFired(e) {
+      // Stop the browser's own Ctrl/Cmd+K handling (e.g. focusing the address bar)
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k" && e.type === "keydown") {
+        e.preventDefault();
+      }
+    },
+  });
   watch(
-    () => meta_k?.value,
+    () => meta_k?.value || ctrl_k?.value,
     (val) => {
       if (val) {
         searchModal.value = !searchModal.value;
