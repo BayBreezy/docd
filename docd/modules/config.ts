@@ -1,4 +1,4 @@
-import { defineNuxtModule } from "@nuxt/kit";
+import { defineNuxtModule, logger } from "@nuxt/kit";
 import { defu } from "defu";
 
 import { getGitBranch, getGitEnv, getLocalGitInfo } from "../utils/git";
@@ -12,6 +12,14 @@ export default defineNuxtModule({
   async setup(_options, nuxt) {
     const dir = nuxt.options.rootDir;
     const url = resolveSiteURL(nuxt.options.site);
+    if (!url && !nuxt.options.dev) {
+      logger
+        .withTag("Docd")
+        .warn(
+          "No site URL configured. The sitemap, canonical links and llms.txt will not use your real domain. " +
+            "Set `site.url` in nuxt.config.ts or the NUXT_SITE_URL environment variable."
+        );
+    }
     const meta = await getPackageJsonMetadata(dir);
     const gitInfo = (await getLocalGitInfo(dir)) || getGitEnv();
     const siteName =

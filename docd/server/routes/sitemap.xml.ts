@@ -7,8 +7,18 @@ interface SitemapUrl {
   lastmod?: string;
 }
 
+let warnedMissingSiteUrl = false;
+
 export default defineEventHandler(async (event) => {
   const siteUrl = (getSiteConfig(event).url || "").replace(/\/+$/, "");
+
+  if (!siteUrl && !warnedMissingSiteUrl) {
+    warnedMissingSiteUrl = true;
+    console.warn(
+      "[docd] No site URL configured: sitemap.xml will contain relative URLs, which crawlers reject. " +
+        "Set `site.url` in nuxt.config.ts or the NUXT_SITE_URL environment variable."
+    );
+  }
 
   const collections = getCollectionsToQuery();
   const urls: SitemapUrl[] = [];
