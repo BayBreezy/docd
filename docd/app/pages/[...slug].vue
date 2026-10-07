@@ -37,11 +37,21 @@
 
   const title = page.value?.seo?.title || page.value?.title;
   const description = page.value?.seo?.description || page.value?.description;
+  // Getters keep the meta tags in sync when the page changes without remounting the component
+  const seoTitle = () => page.value?.seo?.title || page.value?.title;
+  const seoDescription = () => page.value?.seo?.description || page.value?.description;
 
   const publishedAt = computed(() => page.value?.publishedAt || undefined);
   const modifiedAt = computed(() => page.value?.modifiedAt || undefined);
 
-  useSeo({ title, description, type: "article", publishedAt, modifiedAt, breadcrumbs });
+  useSeo({
+    title: seoTitle,
+    description: seoDescription,
+    type: "article",
+    publishedAt,
+    modifiedAt,
+    breadcrumbs,
+  });
   watch(
     () => navigation?.value,
     () => {
