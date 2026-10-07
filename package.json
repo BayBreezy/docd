@@ -39,7 +39,7 @@
     "@types/node": "^26.6.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
-    "nuxt": "^4.5.2",
+    "nuxt": "^4.6.0",
     "nuxt-component-meta": "^0.18.0",
     "oxfmt": "^0.71.0",
     "oxlint": "^1.86.0",
