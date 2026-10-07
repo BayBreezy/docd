@@ -15,6 +15,7 @@ Docd is a Nuxt documentation layer built with Nuxt Layers. The docs UI is built 
 - `docd/modules/`: Nuxt modules. Important ones:
   - `config.ts`: merges sensible defaults into `nuxt.options.*` and `nuxt.options.appConfig`.
   - `prose-component-meta.ts`: generates component metadata and augments parsed content.
+  - `optimize-deps.ts`: rewrites Vite `optimizeDeps.include` entries so they resolve through the layer (see Module Order).
   - `markdown-rewrite.ts`, `routing.ts`, `custom-icons.ts`, `skills.ts`.
 - `docd/app/components/content/prose/`: shipped prose/global markdown components.
 - `docd/app/components/component-api/`: runtime renderers for props/slots/events/exposed.
@@ -47,6 +48,39 @@ Docd is a Nuxt documentation layer built with Nuxt Layers. The docs UI is built 
   - consuming app config wins
   - layer app config provides defaults
 
+## Module Order And Dev Pre-bundling
+
+Module order in `docd/nuxt.config.ts` is load-bearing.
+
+- `modules/config.ts` must stay **first**. It sets defaults (`llms`, `site`, `colorMode`, `app.head`) that `nuxt-llms`, `@nuxtjs/robots` and others read in their own setup. When it ran later those defaults were silently ignored.
+- `modules/optimize-deps.ts` must stay **last**. It rewrites the `optimizeDeps.include` entries added by earlier modules.
+- Why: with isolated installs (bun/pnpm) the consuming app root cannot resolve the layer's dependencies, or those of `@nuxtjs/mdc` / `@nuxt/content`. Vite then skips pre-bundling and **dev breaks silently** (production is fine). The visible symptom was runtime `<MDC>` code blocks rendering unhighlighted after client navigation, because `.nuxt/mdc-imports.mjs` (which imports `remark-emoji`) failed to load in the browser. Entries are prefixed with the layer name (`@baybreezy/docd > mermaid`).
+- If you add a dependency that the **client** imports, add it to `LAYER_OPTIMIZE_DEPS` in `docd/utils/optimize-deps.ts`.
+- The `NUXT_B7002 ... could not be resolved` start-up warning is a useful canary. Only `@vue/devtools-core` / `@vue/devtools-kit` (Nuxt's, not ours) should remain.
+- Two `@nuxtjs/mdc` versions are installed (one via `@nuxt/content`). Check `.nuxt/mdc-imports.mjs` for the one actually in use before reading its source.
+
+## Site URL, SEO And Sitemap
+
+- `site.url` resolution: `site.url` in `nuxt.config.ts`, then env vars (`NUXT_SITE_URL`, Vercel/Netlify/Cloudflare vars) via `resolveSiteURL` in `docd/utils/meta.ts`. `inferSiteURL` keeps an explicit `http://`.
+- `nuxt-llms` disables `/llms.txt` completely without a domain, so `config.ts` falls back to `http://localhost:3000`. Do not remove that fallback.
+- Production builds warn when no site URL is set. Keep that warning if you touch `config.ts`.
+- `appConfig.seo` (`titleTemplate`, `title`, `description`) is applied in `app.vue` and `error.vue` with `useSeoMeta` getters. Pages override title/description from frontmatter. It is also exposed in `nuxt.schema.ts` for Studio, so keep the schema and the `app.config.ts` types in sync with real behavior.
+- The sitemap is a custom route (`server/routes/sitemap.xml.ts`), not `@nuxtjs/sitemap`. Unknown frontmatter keys live under `page.meta`, so `sitemap: false` is read from `page.meta.sitemap`.
+- OG helpers (`app/utils/og.ts`) intentionally do not strip dots or commas: `nuxt-og-image` >= 6.10.3 handles them.
+- Nitro server code has `getSiteConfig(event)` auto-imported, not `useSiteConfig`. App code needs explicit `import { joinURL } from "ufo"`.
+- Use `status` / `statusText` with `createError` (the `statusCode` / `statusMessage` forms are deprecated). The h3 v1 server error objects still expose `statusCode`, so read both when inspecting a caught error.
+
+## Page Data Loading
+
+Many components call `useDocPage()` (including every code block via `ProsePre`), so loading is shared on purpose.
+
+- Load the current page with `useDocPageData(collection)` (inside `useDocPage`), never a hand-written `useAsyncData` for the same key. Nuxt warns (`NUXT_E3004`) when one key has different handlers/options.
+- `getSharedCachedData` plus the layout middleware (`prefetchDocPage` in `app/utils/docPage.ts`) store the page in the payload under the page key, so one request does one query. Do not re-add per-component queries.
+- A component that stays mounted across navigation (like `DocsSearch` in `app.vue`) keeps a `watch` on `route.path`. If it shares a key with another component, its refresh can overwrite that key with another page's data. That is why the landing collection always loads `/` and does not watch the route.
+- Known issue, not fixed: in production, load a docs page, go to `/`, then return to that same docs page and it can show "Page not found" (the page key is fixed at first load while a persistent component refreshes it). A reactive key is the likely fix; test for flicker.
+- Anything passed to `<MDC cache-key>` must include **every prop that changes the output**. Nuxt shares data by key, so a key built from only the file made snippets of the same file with different `meta`/`title`/`start`/`offset` all render the first one (hard loads only).
+- Layout selection stays in middleware (`doc-page-layout`, `landing-page-layout`), as described above.
+
 ## Layout Selection
 
 - Markdown pages can choose layout via frontmatter `layout`.
@@ -58,6 +92,8 @@ Docd is a Nuxt documentation layer built with Nuxt Layers. The docs UI is built 
 
 - The docs command modal supports both nav search and full-text content search.
 - Keep search integrated into the existing modal UI unless there is a strong reason to split it.
+- Searched collections come from `docd.search.collections` (default `["docs"]`, unknown names are skipped). `Cmd+K` and `Ctrl+K` open the dialog.
+- Search sections load client-side only (`server: false`), so they cannot be checked with `curl`.
 
 ## Logo / OG / Typing
 
@@ -198,6 +234,16 @@ This does not rely on Nuxt Content transformers.
   - `docs/.data/content/contents.sqlite`
 - When checking whether component API injection worked, inspect stored parsed content or ToC entries in `contents.sqlite`.
 
+### Verifying Behavior Properly
+
+- Server HTML, hydration and client-side navigation are three different code paths and have each hidden bugs here. Test a hard load **and** a client navigation (`$nuxt.$router.push(...)`), in dev **and** a production build (`bun run docs:build`), and in both color modes for visual issues. `curl` only sees the server HTML.
+- For client-side checks, drive headless Chrome over the DevTools protocol (Node 24 has a global `WebSocket`; Chrome is at `/Applications/Google Chrome.app`). Start Chrome with `--headless=new --remote-debugging-port=<port> --user-data-dir=<tmp>`, `Page.navigate`, wait, then `Runtime.evaluate` with `awaitPromise` and `returnByValue`. Useful probes: `document.querySelector('#__nuxt').__vue_app__.config.globalProperties.$nuxt` for `payload.data`, `$config`, `$router`. Enable `Debugger.setPauseOnExceptions` to find swallowed errors, and `Network` events for failed requests (`fetch` wrappers miss `$fetch`).
+- Nuxt CLI v4 has `nuxt curl <path>` for requests against the running dev server.
+- The user often has their own dev server running on port 3000. Do not kill it or run builds over its `.nuxt`. For risky checks use a throwaway sibling copy of `docs/` (symlink its `node_modules`, set `extends: ["../docd"]`, give it its own port and `NUXT_IGNORE_LOCK=1`) and delete it afterwards. Keep the copy's folder name plain (a dot-folder layer failed to build in testing).
+- From `docs/`, a bare `nuxt dev` booted an empty default Nuxt app. Pass the absolute directory: `nuxt dev /abs/path/to/docs --no-tui --port <port>`.
+- Count real behavior, not assumptions: temporarily log inside a helper (for example a query counter) and remove it, rather than reasoning about how often something runs.
+- In zsh, do not name a shell variable `path` (it is tied to `PATH` and breaks the command).
+
 ## Consuming App Conventions Used In This Repo
 
 - Example consuming-app content lives in `docs/content/`.
@@ -210,3 +256,20 @@ This does not rely on Nuxt Content transformers.
 - Prefer updating shared normalization/utilities in `docd/utils/` over scattering one-off logic across modules and components.
 - If a feature affects ToC or markdown structure, implement it in the parsed content augmentation path, not only in a Vue renderer.
 - If a component/path is intended for markdown usage, make it global.
+- Update `docs/content/` when you add or change a user-facing option, and bump that page's `modifiedAt`. The public reads those pages.
+- When a "bug" is only reproducible in one environment (dev vs production, hard load vs client nav), find out why before changing config. Two plausible theories this session (URL length of the highlight API, `noApiRoute: true`) were wrong or made things worse.
+
+## Releasing
+
+- Only `@baybreezy/docd` is published from here. `create-docd` is separate, and the starter (`.starters/default`) is fetched from GitHub `main` by `create-docd`, so starter changes go live without a release.
+- Add a changeset with `bun run changeset`. It is interactive; non-interactively run `bunx changeset add --empty` and edit the generated `.changeset/*.md` (package, bump, text). `bunx changeset status` validates it.
+- Past releases were patch bumps; new options justify a minor.
+- The release workflow runs on push to `main`: it opens a "Version Packages" PR, and merging that PR publishes to npm. Never push to `main` without being asked.
+- Commits use conventional commits (commitlint, body max 300 characters). Husky runs `lint-staged` (oxfmt, oxlint) on commit. Stage explicit paths and commit in small logical parts; do not use `git add .`.
+- Do not add Claude attribution lines to commits unless asked.
+
+## Syncing With Docus
+
+Docd was modeled on [Docus](https://github.com/nuxt-content/docus). To sync, clone it somewhere temporary (do not leave it in the repo), then `git log --since=<date>` and diff `layer/` against `docd/`.
+
+Deliberately not ported: i18n, the AI assistant, `nuxt-agent-discovery`, `nuxt-schema-org`, `@nuxtjs/sitemap`, FTS5 search, and Docus's Nuxt UI variant-scoping fixes (docd does not use Nuxt UI variant config). Docd keeps its own `markdown-rewrite.ts`, `skills.ts` and sitemap route instead. Docus enables `ogImage.zeroRuntime`; docd does not.
