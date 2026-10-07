@@ -5,6 +5,20 @@ import { defineNuxtModule, logger } from "@nuxt/kit";
 
 const log = logger.withTag("Docd");
 
+/** Subset of the Vercel Build Output API route we generate. */
+type VercelRoute = {
+  src: string;
+  dest?: string;
+  headers?: Record<string, string>;
+  has?: Array<{ type: "header" | "cookie" | "query" | "host"; key: string; value: string }>;
+  /** Apply the headers, then keep matching the following routes. */
+  continue?: boolean;
+};
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 export default defineNuxtModule({
   meta: {
     name: "docd:markdown-rewrite",
@@ -29,12 +43,19 @@ export default defineNuxtModule({
           return;
         }
 
-        // Always redirect / to /llms.txt and ensure plain text content type
+        // Always redirect / to /llms.txt and ensure plain text content type.
+        // `vary` tells CDNs the body depends on the request headers: without it,
+        // whichever variant lands in the cache first is served to everyone.
         const markdownHeaders = {
           "content-type": "text/markdown; charset=utf-8",
+          vary: "Accept, User-Agent",
         };
 
-        const routes = [
+        // Paths answering in two representations. Their HTML variant needs the same
+        // `vary`, otherwise a cached HTML response can be handed to an agent (and vice versa).
+        const negotiatedPaths: string[] = ["/"];
+
+        const routes: VercelRoute[] = [
           {
             src: "^/$",
             dest: "/llms.txt",
@@ -69,22 +90,31 @@ export default defineNuxtModule({
 
             routes.push(
               {
-                src: `^${pagePath}$`,
+                src: `^${escapeRegex(pagePath)}$`,
                 dest: rawPath,
                 headers: markdownHeaders,
                 has: [{ type: "header", key: "accept", value: "(.*)text/markdown(.*)" }],
               },
               {
-                src: `^${pagePath}$`,
+                src: `^${escapeRegex(pagePath)}$`,
                 dest: rawPath,
                 headers: markdownHeaders,
                 has: [{ type: "header", key: "user-agent", value: "curl/.*" }],
               }
             );
+            negotiatedPaths.push(pagePath);
           } catch {
             // Skip invalid URLs
           }
         }
+
+        // Runs after the rewrites above, which terminate for markdown clients,
+        // so only the HTML variant reaches this rule.
+        routes.push({
+          src: `^(${negotiatedPaths.map(escapeRegex).join("|")})$`,
+          headers: { vary: "Accept, User-Agent" },
+          continue: true,
+        });
 
         vcConfig.routes.unshift(...routes);
 
