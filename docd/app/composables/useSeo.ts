@@ -168,7 +168,7 @@ export function useSeo(options: UseSeoOptions) {
       if (type.value === "article") {
         const articleSchema: Record<string, unknown> = {
           "@context": "https://schema.org",
-          "@type": "Article",
+          "@type": "TechArticle",
           headline: title.value,
           description: description.value,
           url: pageUrl,
