@@ -3,6 +3,10 @@
     "nuxt": {
       "type": "http",
       "url": "https://nuxt.com/mcp"
+    },
+    "UI Thing": {
+      "type": "http",
+      "url": "https://uithing.com/mcp"
     }
   }
 }
