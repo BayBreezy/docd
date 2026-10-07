@@ -224,6 +224,20 @@ export default defineNuxtSchema({
                 }),
               },
             }),
+            body: group({
+              title: "Body",
+              description: "Page body layout configuration.",
+              icon: "i-lucide-panel-top",
+              fields: {
+                maxWidth: field({
+                  type: "string",
+                  title: "Max Width",
+                  description: 'Maximum width of the page content, in pixels, e.g. "1280px".',
+                  icon: "i-lucide-move-horizontal",
+                  default: "1280px",
+                }),
+              },
+            }),
             footer: group({
               title: "Footer",
               description: "Sidebar footer configuration.",
