@@ -55,7 +55,7 @@ OUTPUT: Returns a structured list with:
           url: `${siteUrl}${page.path}`,
         }));
     } catch {
-      throw createError({ statusCode: 500, message: "Failed to list pages" });
+      throw createError({ status: 500, message: "Failed to list pages" });
     }
   },
 });

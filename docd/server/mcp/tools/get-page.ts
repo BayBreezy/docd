@@ -46,7 +46,7 @@ WORKFLOW: This tool returns the complete page content including title, descripti
         .first();
 
       if (!page) {
-        throw createError({ statusCode: 404, message: "Page not found" });
+        throw createError({ status: 404, message: "Page not found" });
       }
 
       const content = await event.$fetch<string>(`/raw${path}.md`);
@@ -59,8 +59,9 @@ WORKFLOW: This tool returns the complete page content including title, descripti
         url: `${siteUrl}${page.path}`,
       };
     } catch (error) {
-      if ((error as { statusCode?: number }).statusCode === 404) throw error;
-      throw createError({ statusCode: 500, message: "Failed to get page" });
+      const { status, statusCode } = error as { status?: number; statusCode?: number };
+      if ((status ?? statusCode) === 404) throw error;
+      throw createError({ status: 500, message: "Failed to get page" });
     }
   },
 });
