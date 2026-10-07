@@ -8,8 +8,7 @@ interface SitemapUrl {
 }
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(event);
-  const siteUrl = (config.public.siteUrl as string | undefined) || "";
+  const siteUrl = (getSiteConfig(event).url || "").replace(/\/+$/, "");
 
   const collections = getCollectionsToQuery();
   const urls: SitemapUrl[] = [];
@@ -26,7 +25,8 @@ export default defineEventHandler(async (event) => {
       for (const page of pages) {
         const pagePath = page.path || "/";
 
-        if (page.sitemap === false) continue;
+        // Nuxt Content stores unknown frontmatter keys under `meta`
+        if ((page.meta as Record<string, unknown> | undefined)?.sitemap === false) continue;
         if (pagePath.endsWith(".navigation") || pagePath.includes("/.navigation")) continue;
 
         const entry: SitemapUrl = { loc: pagePath };
