@@ -13,13 +13,13 @@
                 <img
                   v-if="logoLight"
                   :src="logoLight"
-                  alt="Light Logo"
+                  :alt="resolvedLogoAlt"
                   class="h-6 w-auto rounded border border-border/50 dark:hidden"
                 />
                 <img
                   v-if="logoDark"
                   :src="logoDark"
-                  alt="Dark Logo"
+                  :alt="resolvedLogoAlt"
                   class="hidden h-6 w-auto rounded border border-border/50 dark:block"
                 />
               </template>
@@ -194,12 +194,18 @@
 
   const mobileNavOpen = ref(false);
 
-  withDefaults(
+  const headerConfig = useUIConfig("header");
+
+  const props = withDefaults(
     defineProps<{
       siteName?: string;
       logoHref?: string;
       logoLight?: string;
       logoDark?: string;
+      /**
+       * Alt text for the logo images. Defaults to `docd.ui.header.logo.alt`, then "<siteName> logo".
+       */
+      logoAlt?: string;
       navLinks?: HeroNavLink[];
       logInHref?: string;
       logInLabel?: string;
@@ -218,5 +224,13 @@
       signUpLabel: "Sign up",
       navLinks: () => [],
     }
+  );
+
+  // The light and dark images show the same logo, so they share one description
+  const resolvedLogoAlt = computed(
+    () =>
+      props.logoAlt ||
+      headerConfig.value.logo?.alt ||
+      (props.siteName ? `${props.siteName} logo` : "Logo")
   );
 </script>
