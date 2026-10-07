@@ -1,9 +1,10 @@
 export const addPrerenderPath = (path: string) => {
   const event = useRequestEvent();
-  if (event) {
-    event.node.res.setHeader(
+  const res = event?.node?.res;
+  if (res) {
+    res.setHeader(
       "x-nitro-prerender",
-      [event.node.res.getHeader("x-nitro-prerender"), path].filter(Boolean).join(",")
+      [res.getHeader("x-nitro-prerender"), path].filter(Boolean).join(",")
     );
   }
 };
