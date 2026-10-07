@@ -47,7 +47,7 @@
                   class="flex w-full cursor-pointer items-center gap-2"
                 >
                   <Icon :name="item.icon" />
-                  <p v-html="item.label" />
+                  <p>{{ item.label }}</p>
                   <Icon name="lucide:arrow-up-right" class="ml-auto text-muted-foreground" />
                 </NuxtLink>
               </UiDropdownMenuItem>
