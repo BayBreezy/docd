@@ -13,11 +13,10 @@
 
   const route = useRoute();
 
-  const { data: page } = await useAsyncData<LandingPage | null>("landing", () =>
-    queryCollection("landing" as never)
-      .path(route.path)
-      .first()
-      .then((r) => r ?? null)
+  const { data: page } = await useAsyncData<LandingPage | null>(
+    docPageKey("landing", route.path),
+    () => fetchDocPage("landing", route.path) as Promise<LandingPage | null>,
+    { getCachedData: getSharedCachedData }
   );
 
   if (!page.value) {

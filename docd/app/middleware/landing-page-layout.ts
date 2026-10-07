@@ -1,11 +1,7 @@
-interface LandingPageLayout {
-  layout?: string;
-}
-
 export default defineNuxtRouteMiddleware(async (to) => {
-  const page = (await queryCollection("landing" as never)
-    .path(to.path)
-    .first()) as LandingPageLayout | null;
+  const page = (await prefetchDocPage(useNuxtApp(), "landing", to.path)) as {
+    layout?: string;
+  } | null;
 
   setPageLayout(page?.layout || "default");
 });

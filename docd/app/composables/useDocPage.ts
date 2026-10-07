@@ -7,19 +7,13 @@ export const useSearchModal = () => useState("docSearchModal", () => false);
 export const useDocPage = async () => {
   const route = useRoute();
   const isLandingRoute = route.path === "/";
+  const pageCollection = isLandingRoute ? "landing" : "docs";
 
   const [{ data: page }, { data: surround }, { data: navigation }] = await Promise.all([
     useAsyncData<PageCollectionItemBase | null>(
-      kebabCase(route.path) || "root",
-      () =>
-        isLandingRoute
-          ? (queryCollection("landing" as keyof Collections)
-              .path(route.path)
-              .first() as Promise<PageCollectionItemBase | null>)
-          : (queryCollection("docs" as keyof Collections)
-              .path(route.path)
-              .first() as Promise<PageCollectionItemBase | null>),
-      { watch: [() => route.path] }
+      docPageKey(pageCollection, route.path),
+      () => fetchDocPage(pageCollection, route.path),
+      { watch: [() => route.path], getCachedData: getSharedCachedData }
     ),
     useAsyncData(
       `${kebabCase(route.path) || "root"}-surround`,
@@ -32,13 +26,14 @@ export const useDocPage = async () => {
           fields: ["title", "description", "path"],
         }).where("path", "NOT LIKE", "%/.navigation");
       },
-      { watch: [() => route.path] }
+      { watch: [() => route.path], getCachedData: getSharedCachedData }
     ),
     useAsyncData(
       () => `navigation_docs`,
       () => queryCollectionNavigation("docs" as keyof Collections, ["label", "target"]),
       {
         watch: [() => route.path],
+        getCachedData: getSharedCachedData,
         transform: (data: ContentNavigationItem[]) =>
           data.find((item) => item.path === "/docs")?.children || data,
       }
