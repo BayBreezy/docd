@@ -17,7 +17,7 @@
   import { normalizeClass } from "vue";
   import type { HTMLAttributes } from "vue";
 
-  import type { NuxtLinkProps } from "#app/components";
+  import type { NuxtLinkProps } from "#app";
 </script>
 
 <script lang="ts" setup>
