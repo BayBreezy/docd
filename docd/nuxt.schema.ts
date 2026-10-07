@@ -35,6 +35,21 @@ export default defineNuxtSchema({
             }),
           },
         }),
+        search: group({
+          title: "Search",
+          description: "Search dialog configuration.",
+          icon: "i-lucide-search",
+          fields: {
+            collections: field({
+              type: "array",
+              title: "Collections",
+              description:
+                "Names of the content collections included in search. Defaults to the docs collection.",
+              icon: "i-lucide-library",
+              default: ["docs"],
+            }),
+          },
+        }),
         ui: group({
           title: "UI",
           description: "UI customization options.",

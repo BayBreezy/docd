@@ -132,6 +132,20 @@ export type DocdConfig = {
    */
   github?: DocdGithubConfig;
   /**
+   * Search configuration.
+   */
+  search?: {
+    /**
+     * Names of the Nuxt Content collections whose pages are included in the search dialog.
+     *
+     * Add the names of your own collections (for example `blog`) to make them searchable.
+     * Unknown collections are ignored.
+     *
+     * @default ["docs"]
+     */
+    collections?: string[];
+  };
+  /**
    * UI-related configuration options for Docd.
    */
   ui?: {
