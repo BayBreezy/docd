@@ -180,8 +180,22 @@ ${loadedCode.value}
 `.trim();
   });
 
+  /**
+   * MDC caches its parsed output by this key, and Nuxt shares data between components that use the
+   * same key. It has to include every prop that changes the output, otherwise two snippets of the
+   * same file with a different title, meta, highlights or line range all show the first one.
+   */
   const mdCacheKey = computed(
-    () => `prose-code-snippet:${route.path}:${props.file ?? props.url ?? ""}`
+    () =>
+      `prose-code-snippet:${route.path}:${JSON.stringify([
+        props.file ?? props.url ?? "",
+        props.language,
+        props.title,
+        props.highlights,
+        props.meta,
+        props.start,
+        props.offset,
+      ])}`
   );
 
   // Load code on mount
