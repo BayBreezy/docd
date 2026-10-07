@@ -34,8 +34,9 @@ export default defineNuxtModule({
       ],
     });
 
+    // nuxt-llms disables `/llms.txt` entirely when no domain is set, so fall back to localhost
     nuxt.options.llms = defu(nuxt.options.llms ?? {}, {
-      domain: url,
+      domain: url || "http://localhost:3000",
       title: siteName,
       description: meta.description || "",
       full: {

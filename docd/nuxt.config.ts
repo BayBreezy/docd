@@ -34,6 +34,8 @@ export default defineNuxtConfig({
   // Point crawlers at the custom sitemap route (robots resolves it against `site.url`)
   robots: { sitemap: "/sitemap.xml" },
   modules: [
+    // Must run first: it sets defaults (llms, site, colorMode...) that the modules below read in their setup
+    resolver.resolve("./modules/config"),
     "@nuxtjs/robots",
     "@nuxt/content",
     "@nuxtjs/mdc",
@@ -52,7 +54,6 @@ export default defineNuxtConfig({
     "vue-sonner/nuxt",
     resolver.resolve("./modules/routing"),
     resolver.resolve("./modules/css"),
-    resolver.resolve("./modules/config"),
     resolver.resolve("./modules/custom-icons"),
     resolver.resolve("./modules/prose-component-meta"),
     resolver.resolve("./modules/skills"),

@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     name: "Docd",
   },
   llms: {
-    domain: process.env.NUXT_SITE_URL || "http://localhost:3000",
     title: process.env.NUXT_SITE_NAME || "Docd",
     description: "Documentation for the Docd Nuxt layer.",
     full: {
