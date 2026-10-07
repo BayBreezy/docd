@@ -31,6 +31,8 @@ const langs: BundledLanguage[] = [
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: "latest",
+  // Point crawlers at the custom sitemap route (robots resolves it against `site.url`)
+  robots: { sitemap: "/sitemap.xml" },
   modules: [
     "@nuxtjs/robots",
     "@nuxt/content",
@@ -44,7 +46,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "nuxt-gtag",
     "nuxt-llms",
-    "@nuxtjs/robots",
     "@nuxtjs/mcp-toolkit",
     "nuxt-og-image",
     "@morev/vue-transitions/nuxt",
