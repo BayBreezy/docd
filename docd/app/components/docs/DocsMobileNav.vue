@@ -9,7 +9,12 @@
       >
         <DocsLogo />
         <UiDrawerClose as-child>
-          <UiButton variant="ghost" size="icon-sm" class="size-7 text-muted-foreground">
+          <UiButton
+            variant="ghost"
+            size="icon-sm"
+            class="size-7 text-muted-foreground"
+            aria-label="Close navigation"
+          >
             <Icon name="lucide:x" class="size-4" />
           </UiButton>
         </UiDrawerClose>

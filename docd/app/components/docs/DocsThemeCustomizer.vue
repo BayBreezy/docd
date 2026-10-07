@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <template #fallback>
-      <UiButton size="icon-sm" variant="ghost" disabled>
+      <UiButton size="icon-sm" variant="ghost" disabled aria-label="Customize theme">
         <Icon name="lucide:palette" />
       </UiButton>
     </template>
@@ -9,7 +9,7 @@
       <UiTooltip>
         <UiTooltipTrigger as-child>
           <UiPopoverTrigger as-child>
-            <UiButton size="icon-sm" variant="ghost">
+            <UiButton size="icon-sm" variant="ghost" aria-label="Customize theme">
               <Icon name="lucide:palette" />
             </UiButton>
           </UiPopoverTrigger>
@@ -28,7 +28,7 @@
     </UiPopover>
     <UiDrawer v-else>
       <UiDrawerTrigger as-child>
-        <UiButton size="icon-sm" variant="ghost">
+        <UiButton size="icon-sm" variant="ghost" aria-label="Customize theme">
           <Icon name="lucide:palette" />
         </UiButton>
       </UiDrawerTrigger>

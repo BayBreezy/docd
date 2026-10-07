@@ -7,6 +7,7 @@
         class="size-7"
         @click="searchModal = true"
         title="Search documentation"
+        aria-label="Search documentation"
       >
         <Icon name="lucide:search" />
       </UiButton>

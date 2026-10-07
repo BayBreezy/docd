@@ -12,6 +12,7 @@
         size="icon-sm"
         class="size-7"
         aria-label="Open navigation"
+        :aria-expanded="navOpen"
         @click="navOpen = true"
       >
         <Icon name="lucide:menu" class="size-4" />

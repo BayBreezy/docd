@@ -9,6 +9,7 @@
             size: 'icon-sm',
           })
         "
+        aria-label="Toggle theme"
         @click="toggleTheme"
       >
         <ClientOnly>
