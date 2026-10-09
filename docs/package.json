@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@iconify-json/lucide": "^1.2.140",
+    "@iconify-json/lucide": "^1.2.142",
     "@iconify-json/material-icon-theme": "^1.2.71",
     "@iconify-json/simple-icons": "^1.2.99",
     "@takumi-rs/core": "^2.14.0",
