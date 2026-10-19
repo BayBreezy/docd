@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "@baybreezy/docd": "workspace:*",
-    "@iconify-json/lucide": "^1.2.142",
-    "@iconify-json/material-icon-theme": "^1.2.71",
-    "@iconify-json/simple-icons": "^1.2.99",
-    "@takumi-rs/core": "^2.14.0",
-    "nuxt-studio": "1.7.0"
+    "@iconify-json/lucide": "^1.2.146",
+    "@iconify-json/material-icon-theme": "^1.2.72",
+    "@iconify-json/simple-icons": "^1.2.100",
+    "@takumi-rs/core": "^2.17.0",
+    "nuxt-studio": "1.8.0"
   },
   "devDependencies": {
-    "nuxt": "^4.6.0",
-    "typescript": "^6.0.3",
+    "nuxt": "^4.6.2",
+    "typescript": "6.0.3",
     "vue": "latest",
     "vue-router": "latest"
   },

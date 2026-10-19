@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.8.1",
-    "@nuxt/cli": "^4.0.0",
+    "@nuxt/cli": "^4.0.1",
     "picocolors": "^1.1.1"
   },
   "packageManager": "bun@1.4.2"
