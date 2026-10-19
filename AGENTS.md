@@ -261,7 +261,7 @@ This does not rely on Nuxt Content transformers.
 
 ## Releasing
 
-- Only `@baybreezy/docd` is published from here. `create-docd` is separate, and the starter (`.starters/default`) is fetched from GitHub `main` by `create-docd`, so starter changes go live without a release.
+- `@baybreezy/docd` and `create-docd` are both published from this repo by the release workflow (both are workspaces). Publishing uses npm trusted publishing (OIDC, `id-token: write`); there is no `NPM_TOKEN`. Each package needs its own trusted publisher entry on npmjs.com (repo `BayBreezy/docd`, workflow `release.yml`), or its publish 404s. The starter (`.starters/default`) is fetched from GitHub `main` by `create-docd`, so starter changes go live without a release.
 - Add a changeset with `bun run changeset`. It is interactive; non-interactively run `bunx changeset add --empty` and edit the generated `.changeset/*.md` (package, bump, text). `bunx changeset status` validates it.
 - Past releases were patch bumps; new options justify a minor.
 - The release workflow runs on push to `main`: it opens a "Version Packages" PR, and merging that PR publishes to npm. Never push to `main` without being asked.
