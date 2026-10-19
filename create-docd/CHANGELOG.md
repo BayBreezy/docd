@@ -1,5 +1,11 @@
 # create-docd
 
+## 0.0.10
+
+### Patch Changes
+
+- 38a754a: Update `@nuxt/cli` to `^4.0.1`.
+
 ## 0.0.9
 
 ### Patch Changes
