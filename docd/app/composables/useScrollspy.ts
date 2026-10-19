@@ -57,10 +57,14 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
   // --- Resolve the scroller (window by default) ---
   const scroller = shallowRef<Window | HTMLElement | null>(null);
 
+  function isWindow(el: Window | HTMLElement | null): el is Window {
+    return el === window;
+  }
+
   function sectionTopWithinScroller(sectionEl: HTMLElement): number {
     const se = scroller.value;
     const rect = sectionEl.getBoundingClientRect();
-    if (!se || se === window) {
+    if (!se || isWindow(se)) {
       return rect.top + (window.scrollY || document.documentElement.scrollTop);
     }
 
@@ -96,7 +100,7 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
 
   // Helpers for scroll metrics
   function getScrollTop(se: Window | HTMLElement | null) {
-    if (!se || se === window) {
+    if (!se || isWindow(se)) {
       return window.scrollY || document.documentElement.scrollTop;
     }
 
@@ -104,7 +108,7 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
   }
 
   function getScrollHeight(se: Window | HTMLElement | null) {
-    if (!se || se === window) {
+    if (!se || isWindow(se)) {
       return document.documentElement.scrollHeight;
     }
 
@@ -112,7 +116,7 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
   }
 
   function getClientHeight(se: Window | HTMLElement | null) {
-    if (!se || se === window) {
+    if (!se || isWindow(se)) {
       return window.innerHeight;
     }
 
@@ -121,7 +125,7 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
 
   function getViewportBounds(customOffset: number) {
     const se = scroller.value;
-    if (!se || se === window) {
+    if (!se || isWindow(se)) {
       return {
         top: customOffset,
         bottom: window.innerHeight,
@@ -243,8 +247,8 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
     idOrEl: string | HTMLElement,
     behavior: ScrollBehavior = smooth ? "smooth" : "auto"
   ) {
-    let anchorEl: HTMLElement | null = null;
-    let sectionId: string | null = null;
+    let anchorEl: HTMLElement | null;
+    let sectionId: string | null;
 
     if (typeof idOrEl === "string") {
       sectionId = idOrEl;
@@ -315,11 +319,11 @@ export function useScrollspy(options: UseScrollspyOptions = {}) {
   return {
     /** Container that holds the anchors (use this if you didn't pass `root`) */
     root,
-    /** Currently active section id */
+    /** Currently active section id. */
     activeId,
-    /** Currently active section ids */
+    /** Currently active section ids. */
     activeIds,
-    /** Programmatically scroll to a section id or anchor element */
+    /** Programmatically scroll to a section id or anchor element. */
     scrollTo,
     /** Force recompute (e.g., after dynamic layout changes) */
     recompute: () => handleScroll(),

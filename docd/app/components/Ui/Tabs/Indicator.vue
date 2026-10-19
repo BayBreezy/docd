@@ -1,19 +1,17 @@
 <template>
-  <ClientOnly>
-    <TabsIndicator
-      data-slot="tabs-indicator"
-      v-bind="{ ...forwarded, ...$attrs }"
-      :class="styles({ class: normalizeClass(props.class) || undefined })"
-      :style="{
-        width: 'var(--reka-tabs-indicator-size)',
-        transform: 'translateX(var(--reka-tabs-indicator-position))',
-      }"
-    >
-      <slot>
-        <div class="h-full w-full rounded-md bg-primary" />
-      </slot>
-    </TabsIndicator>
-  </ClientOnly>
+  <TabsIndicator
+    data-slot="tabs-indicator"
+    v-bind="{ ...forwarded, ...$attrs }"
+    :class="styles({ class: normalizeClass(props.class) || undefined })"
+    :style="{
+      width: 'var(--reka-tabs-indicator-size)',
+      transform: 'translateX(var(--reka-tabs-indicator-position))',
+    }"
+  >
+    <slot>
+      <div class="h-full w-full rounded-md bg-primary" />
+    </slot>
+  </TabsIndicator>
 </template>
 
 <script lang="ts" setup>
