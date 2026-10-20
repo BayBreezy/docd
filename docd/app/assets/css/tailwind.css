@@ -284,17 +284,15 @@ html.light {
 
 /* Chromium/Brave on Windows renders the native <select> dropdown popup as an
    OS widget outside the DOM. color-scheme must be set directly on the element
-   (not just inherited from html) for the popup to adopt dark styling. */
+   (not just inherited from html) for the popup to adopt dark styling.
+   Do not set a background-color on `select` here: unlayered rules beat the
+   utilities on UiNativeSelect, and a transparent or translucent background
+   makes the popup render white in dark mode. */
 .dark select {
   color-scheme: dark;
-  background-color: --alpha(var(--input) / 30%);
 }
 .light select {
   color-scheme: light;
-}
-
-select {
-  background-color: transparent;
 }
 
 h1 > a,
